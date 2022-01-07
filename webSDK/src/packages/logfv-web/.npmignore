@@ -7,3 +7,4 @@ babel.config.js
 yarn.lock
 vue.config.js
 webpack.config.js
+demo

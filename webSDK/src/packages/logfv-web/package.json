@@ -1,6 +1,6 @@
 {
   "name": "@dpark/logfv-web",
-  "version": "1.0.24",
+  "version": "1.0.25",
   "description": "前端日志组件",
   "license": "MIT",
   "scripts": {
