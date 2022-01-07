@@ -10,5 +10,5 @@ deployments/logs
 tpid
 *.log
 dist
-public/s2.config.json
+s2.config.json
 build
