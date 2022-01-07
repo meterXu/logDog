@@ -51,7 +51,7 @@ yarn add @dpark/logfv-web-vue --registry http://58.210.9.133/iplatform/npm/
 | succHandler             |  你可以配置该项回调，该方法会在 log() 和 logWithEncryption() 方法内异步存储日志成功后执行。    |     是     |null|
 |frameConfig|组件扩展配置，配置一些全局的日志记录功能|是| |
 | console|是否在控制台同步打印日志，默认false|是| false |
-
+| enable|是否记录日志，默认true|是| true |
 
 **reportConfig: 主要上报参数配置**
 
