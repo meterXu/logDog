@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import {LogFv} from '../packages/logfv-web-vue'
+import {LogFv} from '../packages/logfv-web-vue/index'
 export default {
   name: "Test.vue",
   data(){

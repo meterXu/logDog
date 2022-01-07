@@ -30,7 +30,7 @@ Vue.mixin({
 axios.get("./config.json").then(res=>{
   Vue.prototype.$uploadUrl = res.data.uploadUrl
   Vue.use(vueLogFv,{
-    reportUrl:'http://192.168.253.128:9999/logfv-server/logfv/web/upload',
+    reportUrl:Vue.prototype.$uploadUrl,
     appId:"test",
     appName:'测试系统',
     console:false,
