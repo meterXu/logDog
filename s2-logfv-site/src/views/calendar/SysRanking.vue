@@ -11,8 +11,13 @@
       <a-collapse class="a-collapse" accordion>
         <a-collapse-panel v-for="item in typeData" :key="item.logType">
           <div slot="header">
-            <progress class="process-action" max="100" value="70"></progress>
-            <div><span>{{item.logType}}：</span><span>{{item.num}}</span></div>
+            <div class="progress-bar">
+              <div class="progress-value" :style="getProgressStyle(item)"></div>
+              <div class="progress-text" :style="getTitleStyle(item)">
+                <span>{{item.logTitle}}：</span>
+                <span>{{item.num}}</span>
+              </div>
+            </div>
           </div>
           <p>info</p>
         </a-collapse-panel>
@@ -22,6 +27,7 @@
 </template>
 
 <script>
+import {webLogTypeConfigs} from '../../mixins/logtypes'
 export default {
   name: "SysRanking",
   data(){
@@ -46,27 +52,35 @@ export default {
   created() {
     if(this.$route.params.typeData){
       this.typeData = Object.keys(this.$route.params.typeData).map(c=>{
+        let webLogType = webLogTypeConfigs.find(t=>t.logType===c)
         return {
+          logTitle:webLogType?webLogType.logTypeName:'-',
+          logColor:webLogType?webLogType.displayColor:null,
           logType:c,
           num:this.$route.params.typeData[c]
         }
       }).sort((a,b)=>{return b.num-a.num}).filter(c=>c.num)
     }
+  },
+  methods:{
+    getProgressStyle(item) {
+      let max = this.typeData[0].num
+      let width = (item.num/max)*100
+      return {backgroundColor:item.logColor,width:`${width}%`}
+    },
+    getTitleStyle(item){
+      let max = this.typeData[0].num
+      let width = (item.num/max)
+      if(width<0.1){
+        return {color:'#5c5c5c'}
+      }else{
+        return  {color:'#fff'}
+      }
+    }
   }
 }
 </script>
 <style>
-:root{
-  --process-action-bg: #5193ff;
-  --process-page-bg: #5193ff;
-  --process-network-bg: #5193ff;
-  --process-exception-bg: #5193ff;
-  --process-info-bg: #5193ff;
-  --process-warn-bg: #5193ff;
-  --process-debug-bg: #5193ff;
-  --process-error-bg: #5193ff;
-  --process-other-bg: #5193ff;
-}
 </style>
 <style scoped>
 .content_container{
@@ -90,27 +104,24 @@ export default {
 .a-collapse{
   width: 100%;
 }
-progress{
-  height: 22px;
+.progress-bar{
+  height: 28px;
   width: 100%;
   margin: 0;
   padding: 0;
   display: block;
   border: 0;
 }
-progress::-webkit-progress-value{
+.progress-value{
+  width: 70%;
+  height: 100%;
   border-radius: 4px;
 }
-progress::-webkit-progress-bar{
-  background-color: transparent;
+.progress-text{
+  top: -28px;
+  position: relative;
+  color: #fff;
+  line-height: 28px;
+  text-indent: 12px;
 }
-.process-action::-webkit-progress-value { background-color: var(--process-action-bg); }
-.process-page::-webkit-progress-value { background-color: var(--process-page-bg); }
-.process-network::-webkit-progress-value { background-color: var(--process-network-bg); }
-.process-exception::-webkit-progress-value { background-color: var(--process-exception-bg); }
-.process-info::-webkit-progress-value { background-color: var(--process-info-bg); }
-.process-warn::-webkit-progress-value { background-color: var(--process-warn-bg); }
-.process-debug::-webkit-progress-value { background-color: var(--process-debug-bg); }
-.process-error::-webkit-progress-value { background-color: var(--process-error-bg); }
-.process-other::-webkit-progress-value { background-color: var(--process-other-bg); }
 </style>
