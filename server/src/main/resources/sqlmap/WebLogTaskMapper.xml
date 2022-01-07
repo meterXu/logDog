@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.meituan.logan.web.mapper.WebLogTaskMapper">
+    <resultMap id="resultMap" type="com.meituan.logan.web.dto.WebLogTaskDTO">
+        <id column="id" jdbcType="BIGINT" property="taskId"/>
+        <result column="device_id" jdbcType="VARCHAR" property="deviceId"/>
+        <result column="device_name" jdbcType="VARCHAR" property="appName"/>
+        <result column="web_source" jdbcType="VARCHAR" property="webSource"/>
+        <result column="environment" jdbcType="VARCHAR" property="environment"/>
+        <result column="page_num" jdbcType="INTEGER" property="pageNum"/>
+        <result column="content" jdbcType="VARCHAR" property="content"/>
+        <result column="add_time" jdbcType="BIGINT" property="addTime"/>
+        <result column="log_date" jdbcType="BIGINT" property="logDate"/>
+        <result column="obj_type" jdbcType="INTEGER" property="objType"/>
+        <result column="record_year" jdbcType="BIGINT" property="recordYear"/>
+        <result column="record_month" jdbcType="BIGINT" property="recordMonth"/>
+        <result column="record_day" jdbcType="BIGINT" property="recordDay"/>
+        <result column="custom_report_info" jdbcType="VARCHAR" property="customReportInfo"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+
+
+    <resultMap id="taskResultMap" type="com.meituan.logan.web.dto.TaskIndexDTO">
+        <result column="device_id" jdbcType="VARCHAR" property="deviceId"/>
+        <result column="device_name" jdbcType="VARCHAR" property="deviceName"/>
+        <result column="last_log_date" jdbcType="BIGINT" property="lastLogDate"/>
+        <result column="log_page_num" jdbcType="BIGINT" property="logPageNum"/>
+    </resultMap>
+
+    <resultMap id="taskByDateResultMap" type="com.meituan.logan.web.dto.TaskByDateDTO">
+        <result column="device_id" jdbcType="VARCHAR" property="deviceId"/>
+        <result column="log_date" jdbcType="BIGINT" property="logDate"/>
+        <result column="log_page_num" jdbcType="BIGINT" property="logPageNum"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="map" useGeneratedKeys="true" keyColumn="id"
+            keyProperty="taskId">
+      INSERT INTO web_task (device_id,device_name,web_source,environment,page_num,content,add_time,log_date,status,custom_report_info,obj_type,record_year,record_month,record_day)
+      VALUES (#{task.deviceId},#{task.appName},#{task.webSource},#{task.environment},#{task.pageNum},#{task.content},#{task.addTime},#{task.logDate},#{task.status},#{task.customReportInfo},#{task.objType},#{task.recordYear},#{task.recordMonth},#{task.recordDay})
+    </insert>
+
+    <update id="updateContent" parameterType="map">
+        UPDATE web_task SET content =#{content} WHERE id = #{taskId}
+    </update>
+
+    <select id="exist" parameterType="map" resultMap="resultMap">
+      SELECT * FROM web_task WHERE log_date=#{logDate} and device_id=#{deviceId} and page_num=#{pageNum} limit 1
+    </select>
+
+    <delete id="deleteByAddTime" parameterType="map">
+        <![CDATA[
+        delete from  web_task where add_time<#{addTime}
+        ]]>
+    </delete>
+
+    <select id="queryByIds" parameterType="map" resultMap="resultMap">
+        select * from web_task where id in
+        <foreach collection="tasks" item="id" index="index" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </select>
+
+    <update id="updateStatus" parameterType="map">
+        update web_task set status=#{status} where id=#{taskId}
+    </update>
+
+    <select id="maxId" resultType="java.lang.Long">
+        select max(id) from web_task
+    </select>
+
+    <select id="queryByRange" parameterType="map" resultMap="resultMap">
+        select id,device_id,device_name,web_source,environment,page_num,add_time,log_date,custom_report_info,status,update_time
+        from web_task where id between #{minId} and #{maxId}
+    </select>
+
+    <select id="query" parameterType="map" resultMap="taskResultMap">
+        select device_id,device_name,max(log_date) as last_log_date,count(web_task.id) as log_page_num
+        from web_task where 1=1
+        <if test="deviceName!=null and deviceName !=''">
+            and device_name like "%"#{deviceName}"%"
+        </if>
+        <if test="deviceId!=null and deviceId !=''">
+            and device_id like "%"#{deviceId}"%"
+        </if>
+        group by device_id, device_name order by device_name desc
+        LIMIT #{limit} OFFSET #{offset}
+    </select>
+
+    <select id="total" parameterType="map"  resultType="java.lang.Long">
+        select count(*) total from (
+        select device_id,device_name
+        from web_task where 1=1
+        <if test="deviceName!=null and deviceName !=''">
+            and device_name like "%"#{deviceName}"%"
+        </if>
+        <if test="deviceId!=null and deviceId !=''">
+            and device_id like "%"#{deviceId}"%"
+        </if>
+        group by device_id, device_name) t
+    </select>
+
+    <select id="queryTaskByDate" parameterType="map"  resultMap="taskByDateResultMap">
+        select device_id,log_date,count(web_task.id) as log_page_num from web_task
+        <if test="deviceId!=null and deviceId !=''">
+            where device_id = #{deviceId}
+        </if>
+        group by log_date order by log_date desc;
+    </select>
+
+</mapper>

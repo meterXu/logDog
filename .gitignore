@@ -1,0 +1,14 @@
+# Editor directories and files
+.idea
+target
+logan-web.iml
+yarn.lock
+node_modules
+deployments/dbInit/package-lock.json
+deployments/logs
+.DS_Store
+tpid
+*.log
+dist
+s2.config.json
+build

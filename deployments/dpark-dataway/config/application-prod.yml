@@ -1,0 +1,78 @@
+server:
+  port: 9191
+  servlet:
+    context-path: /dpark-dataway-api
+    encoding:
+      charset: utf-8
+      enabled: true
+      force: true
+sipsd:
+  ip: 127.0.0.1
+  mysqlip: DB_HOST
+
+spring:
+  application:
+    name: dpark-dataway
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    driver-class-name:  com.mysql.jdbc.Driver
+    jdbc-url: jdbc:mysql://${sipsd.mysqlip}:DB_PORT/DB_NAME?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false
+    url: jdbc:mysql://${sipsd.mysqlip}:DB_PORT/DB_NAME?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false
+    username: DB_USER
+    password: 'DB_PASSWD'
+    type : com.alibaba.druid.pool.DruidDataSource
+    #初始化时建立物理连接的个数
+    druid:
+      initial-size : 3
+      #最小连接池数量
+      min-idle : 3
+      #最大连接池数量
+      max-active : 10
+      #获取连接时最大等待时间
+      max-wait : 60000
+      #配置监控页面访问登录名称
+      stat-view-servlet:
+        login-username : admin
+        #配置监控页面访问密码
+        login-password : admin
+      #是否开启慢sql查询监控
+      filter:
+        stat:
+          log-slow-sql: true
+          #慢SQL执行时间
+          slow-sql-millis : 100
+logging:
+  #  config: classpath:config/logback-spring.xml
+  level:
+    root: info
+    com.sipsd: info
+  #  file: logs/${spring.application.name}.log
+
+#mybatis plus 设置
+mybatis-plus:
+  mapper-locations: classpath*:org/jeecg/modules/**/xml/*Mapper.xml
+  global-config:
+    # 关闭MP3.0自带的banner
+    banner: false
+    db-config:
+      #主键类型  0:"数据库ID自增",1:"该类型为未设置主键类型", 2:"用户输入ID",3:"全局唯一ID (数字类型唯一ID)", 4:"全局唯一ID UUID",5:"字符串全局唯一ID (idWorker 的字符串表示)";
+      id-type: 4
+      # 默认数据库表下划线命名
+      table-underline: true
+      #逻辑删除配置
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+      #  configuration:
+      #这个配置会将执行的sql打印出来，在开发或测试的时候可以用
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+# dataway
+HASOR_DATAQL_DATAWAY: true
+HASOR_DATAQL_DATAWAY_ADMIN: true
+HASOR_DATAQL_FX_PAGE_DIALECT: mysql
+# （可选）ui 的工作路径，只有开启 ui 管理功能后才有效
+HASOR_DATAQL_DATAWAY_UI_URL: /interface-ui/
+# （可选）API工作路径
+HASOR_DATAQL_DATAWAY_API_URL: /api/
+#是否启用 Admin UI 的登陆认证
+HASOR_DATAQL_DATAWAY_AUTHORIZATION_ENABLE: false

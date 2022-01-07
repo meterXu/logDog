@@ -1,0 +1,21 @@
+version: "3"
+services:
+  logfv:
+    image: logfv:latest
+    container_name: logfv-app
+    environment:
+      - DB_HOST=192.168.253.128
+      - DB_NAME=logfv
+      - DB_PORT=3306
+      - DB_PASSWD=123456
+      - BASE_API=http://192.168.253.128:9191
+    networks:
+      - logfv-tier
+    ports:
+      - "9999:8080"
+      - "9191:9191"
+    restart: always
+
+networks:
+  logfv-tier:
+    driver: bridge

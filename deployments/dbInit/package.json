@@ -1,0 +1,7 @@
+{
+  "name": "dbInit",
+  "version": "1.0.0",
+  "dependencies": {
+    "mysql8": "^2.17.3"
+  }
+}

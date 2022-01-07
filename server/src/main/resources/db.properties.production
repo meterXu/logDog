@@ -1,0 +1,4 @@
+jdbc.driver=com.mysql.jdbc.Driver
+jdbc.url=jdbc:mysql://DB_HOST:DB_PORT/DB_NAME?characterEncoding=UTF8&allowMultiQueries=true&socketTimeout=60000&autoReconnect=true&useSSL=false&serverTimezone=Asia/Shanghai
+jdbc.username=DB_USER
+jdbc.password=DB_PASSWD
