@@ -17,10 +17,9 @@ export default util.parseRoutes([
     component: CalendarView
   },
   {
-    path: '/logfvSite/calendar/sysRanking/:year/:month/:date',
-    name: '@getRoutesName(path)',
+    path: '/logfvSite/calendar/sysRanking',
+    name: 'logfvSite_calendar_sysRanking',
     component: SysRanking,
-    props: true,
     meta:{
       title: '当日详情'
     }

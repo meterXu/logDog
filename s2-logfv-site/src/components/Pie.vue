@@ -1,5 +1,5 @@
 <template>
-  <div v-show="chartData.init" ref="pie" class="pie"></div>
+  <div v-show="init" ref="pie" class="pie" @click="chickHandler"></div>
 </template>
 
 <script>
@@ -32,17 +32,17 @@ export default {
         debug: null,
         error: null,
         other: null,
-        init:false,
       },
+      init:false,
       noValue:0.99
     }
   },
   watch:{
     datas:{
      handler(){
-       this.chartData.init = false
+       this.init = false
        this.setChartData()
-       if(this.chartData.init){
+       if(this.init){
          this.$nextTick(()=>{
            this.initPie()
          })
@@ -60,7 +60,7 @@ export default {
         let keys= Object.keys(this.chartData)
         this.datas.forEach(c=>{
           if(c.record_year===year&&c.record_month===month&&c.record_day===day){
-            this.chartData.init = true
+            this.init = true
             if(keys.find(d=>d===c.log_type)){
               this.chartData[c.log_type] = c.num
             }else{
@@ -117,6 +117,9 @@ export default {
         ]
       };
       option && myChart.setOption(option);
+    },
+    chickHandler(){
+      this.$emit('click',this.date,this.chartData)
     }
   }
 }

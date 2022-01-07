@@ -14,7 +14,7 @@
       <ConfigProvider :locale="locale">
         <Calendar @panelChange="onPanelChange" @select="onSelect" style="height: 100%" v-model="date" :mode="mode">
           <div slot="dateCellRender" slot-scope="value" class="events">
-            <Pie :date="value" :datas="datas"/>
+            <Pie :date="value" :datas="datas" @click="showSysRanking"/>
           </div>
           <div slot="monthCellRender" slot-scope="value" class="events">
             <Treemap :date="value" :datas="datas" />
@@ -86,9 +86,17 @@ export default {
           this.yearValue = null
         }break;
         case 'month':{
-          this.$router.push({ path: `/logfvSite/calendar/sysRanking/${date.get('year')}/${date.get('month')+1}/${date.get('date')}`})
         }break;
       }
+    },
+    showSysRanking(date,typeData){
+      this.$router.push({
+        name: `logfvSite_calendar_sysRanking`,
+        params:{
+          date:date,
+          typeData:typeData
+        }
+      })
     }
   },
    created() {

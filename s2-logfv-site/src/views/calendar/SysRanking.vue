@@ -9,23 +9,12 @@
     </div>
     <div class="content_container" v-else>
       <a-collapse class="a-collapse" accordion>
-        <a-collapse-panel key="1">
+        <a-collapse-panel v-for="item in typeData" :key="item.logType">
           <div slot="header">
             <progress class="process-action" max="100" value="70"></progress>
+            <div><span>{{item.logType}}：</span><span>{{item.num}}</span></div>
           </div>
           <p>info</p>
-        </a-collapse-panel>
-        <a-collapse-panel key="2">
-          <div slot="header">
-            <progress class="process-page" max="100" value="70"></progress>
-          </div>
-          <p>warning</p>
-        </a-collapse-panel>
-        <a-collapse-panel key="3">
-          <div slot="header">
-            <progress class="process-network" max="100" value="70"></progress>
-          </div>
-          <p>error</p>
         </a-collapse-panel>
       </a-collapse>
     </div>
@@ -35,25 +24,33 @@
 <script>
 export default {
   name: "SysRanking",
-  props:["year","month","date"],
   data(){
     return {
       loading:false,
-      text:'xxx',
-
+      typeData:[],
+      url:{
+        getCountByGroupByLogType:"/logfv/web/getCountByGroupByLogType"
+      }
     }
   },
   computed:{
     myDate(){
-      let _month=this.month.toString()
-      let _date=this.date.toString()
-      if(this.month<10){
-         _month='0'+_month
-       }
-       if(this.date<10){
-         _date='0'+_date
-       }
-       return this.year+'-'+_month+'-'+_date
+      let date = this.$route.params.date
+      if(date){
+        return date.format('YYYY-MM-DD')
+      }else{
+        return '-'
+      }
+    }
+  },
+  created() {
+    if(this.$route.params.typeData){
+      this.typeData = Object.keys(this.$route.params.typeData).map(c=>{
+        return {
+          logType:c,
+          num:this.$route.params.typeData[c]
+        }
+      }).sort((a,b)=>{return b.num-a.num}).filter(c=>c.num)
     }
   }
 }
