@@ -1,7 +1,7 @@
 <template>
   <a-card :bordered="false" style="height: 100%" :bodyStyle="{height:'100%',display:'flex',flex:1,'flex-direction':'column','padding-bottom':0}">
     <div class="ant-alert ant-alert-info" style="margin-bottom: 16px;">
-      <a style="margin-left: 0px">{{myDate}}</a>
+      <a style="margin-left: 0px">日期：{{myDate}}</a>
     </div>
     <div class="spin_container" v-if="loading">
       <a-spin tip="努力加载中...">

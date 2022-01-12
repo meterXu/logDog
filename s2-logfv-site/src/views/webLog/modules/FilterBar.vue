@@ -49,7 +49,7 @@
 <script>
 export default {
   name: "FilterBar",
-  props:["webLogTypes"],
+  props:["webLogTypes",'logType'],
   data(){
     return {
       queryParam:{
@@ -80,6 +80,11 @@ export default {
       }
       this.hours=[0,24]
       this.$emit('search',this.queryParam)
+    }
+  },
+  created() {
+    if(this.logType){
+      this.queryParam.logType=[this.logType]
     }
   }
 }

@@ -3,7 +3,7 @@
     <div class="ant-alert ant-alert-info" style="margin-bottom: 16px;">
       <a style="margin-left: 0px">{{deviceName}}：{{date}}</a>
     </div>
-    <FilterBar :webLogTypes="webLogTypes" @search="search"></FilterBar>
+    <FilterBar :webLogTypes="webLogTypes" :logType="logType" @search="search"></FilterBar>
     <div class="spin_container" v-if="loading">
       <a-spin tip="努力加载中...">
       </a-spin>
