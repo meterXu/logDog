@@ -13,13 +13,15 @@
           <div slot="header">
             <div class="progress-bar">
               <div class="progress-value" :style="getProgressStyle(item)"></div>
-              <div class="progress-text" :style="getTitleStyle(item)">
+              <div class="progress-text">
                 <span>{{item.logTitle}}：</span>
-                <span>{{item.num}}</span>
+                <span>{{item.num}}条</span>
               </div>
             </div>
           </div>
-          <p>info</p>
+          <p>
+            <SysDayTypeTable :date="date" :logType="item.logType"></SysDayTypeTable>
+          </p>
         </a-collapse-panel>
       </a-collapse>
     </div>
@@ -28,11 +30,14 @@
 
 <script>
 import {webLogTypeConfigs} from '../../mixins/logtypes'
+import SysDayTypeTable from "./modules/SysDayTypeTable";
 export default {
   name: "SysRanking",
+  components: {SysDayTypeTable},
   data(){
     return {
       loading:false,
+      date:null,
       typeData:[],
       url:{
         getCountByGroupByLogType:"/logfv/web/getCountByGroupByLogType"
@@ -42,12 +47,31 @@ export default {
   computed:{
     myDate(){
       let date = this.$route.params.date
+      this.date = date
       if(date){
         return date.format('YYYY-MM-DD')
       }else{
         return '-'
       }
     }
+  },
+  methods:{
+    getProgressStyle(item) {
+      let max = this.typeData[0].num
+      let width = (item.num/max)*100
+      return {backgroundColor:item.logColor,width:`${width}%`}
+    },
+    setTitleStyle(){
+      let els = document.getElementsByClassName('progress-value')
+      for(let i=0;i<els.length;i++){
+        if(els[i].offsetWidth<150){
+          document.getElementsByClassName('progress-text')[i].setAttribute('style','color:#5c5c5c')
+        }
+      }
+    }
+  },
+  mounted() {
+    this.setTitleStyle()
   },
   created() {
     if(this.$route.params.typeData){
@@ -60,22 +84,6 @@ export default {
           num:this.$route.params.typeData[c]
         }
       }).sort((a,b)=>{return b.num-a.num}).filter(c=>c.num)
-    }
-  },
-  methods:{
-    getProgressStyle(item) {
-      let max = this.typeData[0].num
-      let width = (item.num/max)*100
-      return {backgroundColor:item.logColor,width:`${width}%`}
-    },
-    getTitleStyle(item){
-      let max = this.typeData[0].num
-      let width = (item.num/max)
-      if(width<0.1){
-        return {color:'#5c5c5c'}
-      }else{
-        return  {color:'#fff'}
-      }
     }
   }
 }

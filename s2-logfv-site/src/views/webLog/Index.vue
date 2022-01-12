@@ -80,8 +80,6 @@
 </template>
 
 <script>
-
-import JEllipsis from '../../components/jeecg/JEllipsis'
 import {JeecgListMixin} from '../../mixins/JeecgListMixin'
 import {getAction} from "../../api/manage";
 import moment from 'moment'
@@ -90,7 +88,6 @@ export default {
   name: 'webLog',
   mixins: [JeecgListMixin],
   components: {
-    JEllipsis,
     ExpandTable
   },
   data() {
@@ -184,18 +181,6 @@ export default {
   computed: {
   },
   methods: {
-    handleChange(info) {
-      if (info.file.status === 'done') {
-        if (info.file.response.success) {
-          this.loadData()
-          this.$message.success(`${info.file.name} 上传成功!`)
-        } else {
-          this.$message.error(`${info.file.response.message}`)
-        }
-      } else if (info.file.status === 'error') {
-        this.$message.error(`${info.file.response.message}`)
-      }
-    },
     loadData(arg) {
       if (!this.url.list) {
         this.$message.error('请设置url.list属性!')

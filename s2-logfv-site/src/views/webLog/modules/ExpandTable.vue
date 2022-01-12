@@ -8,7 +8,7 @@
       :loading="loading"
       :columns="innerColumns"
       :data-source="innerData"
-      :pagination="pagination"
+      :pagination="ipagination"
       @change="handleTableChange"
   >
           <span slot="action" slot-scope="text, record">
@@ -52,7 +52,7 @@ export default {
         }
       ],
       innerData:[],
-      pagination:{
+      ipagination:{
         current:1,
         pageSize:10,
         position:"top",
