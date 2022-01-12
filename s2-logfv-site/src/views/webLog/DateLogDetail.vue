@@ -46,7 +46,7 @@ import LogDetailCard from "./modules/LogDetailCard";
 import moment from 'moment'
 export default {
   name: "DateLogDetial",
-  props:["deviceId","deviceName","logDate"],
+  props:["deviceId","deviceName","logDate",'logType'],
   components:{LogDetailCard, FilterBar,TimeMiniMap,LogList},
   data(){
     return {
@@ -100,6 +100,9 @@ export default {
           pageNo:this.pagination.pageNo,
           pageSize:this.pagination.pageSize
         })
+        if(this.logType!=='0'){
+          params.logType = this.logType
+        }
       }
       this.loading=true
       getAction(this.url.dateLogIndex,params).then(res=>{

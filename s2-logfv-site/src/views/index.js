@@ -30,7 +30,7 @@ export default util.parseRoutes([
     component: WebLog,
   },
   {
-    path: '/logfvSite/webLog/dateLogDetail/:deviceId/:deviceName/:logDate',
+    path: '/logfvSite/webLog/dateLogDetail/:deviceId/:deviceName/:logDate/:logType',
     name: '@getRoutesName(path)',
     component: DateLogDetail,
     meta:{

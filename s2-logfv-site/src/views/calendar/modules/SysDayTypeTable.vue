@@ -79,7 +79,7 @@ export default {
   },
   methods:{
     logDetail(record){
-
+      this.$router.push({ path: `/logfvSite/webLog/dateLogDetail/${record.device_id}/${record.device_name}/${record.log_date}/${this.logType}`})
     },
     loadData(arg){
       if (!this.url.list) {

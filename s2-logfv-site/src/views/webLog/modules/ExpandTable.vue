@@ -113,7 +113,7 @@ export default {
       this.loadData()
     },
     logDetail(rowData){
-      this.$router.push({ path: `/logfvSite/webLog/dateLogDetail/${rowData.device_id}/${this.record.device_name}/${rowData.log_date}`})
+      this.$router.push({ path: `/logfvSite/webLog/dateLogDetail/${rowData.device_id}/${this.record.device_name}/${rowData.log_date}/0`})
     }
   },
   mounted() {

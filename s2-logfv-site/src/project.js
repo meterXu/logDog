@@ -45,7 +45,7 @@ const project_logfvSite = {
     theme: 'light',
     color: '#1890FF',
     layout: 'topmenu',
-    multipage: false,
+    multipage: true,
     colorWeak: false,
     fixedHeader: false,
     fixSiderbar: false,
