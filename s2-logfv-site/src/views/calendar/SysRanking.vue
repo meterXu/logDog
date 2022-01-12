@@ -9,18 +9,18 @@
     </div>
     <div class="content_container" v-else>
       <a-collapse class="a-collapse" accordion>
-        <a-collapse-panel v-for="item in typeData" :key="item.logType">
+        <a-collapse-panel v-for="item in dayData" :key="item.log_type">
           <div slot="header">
             <div class="progress-bar">
               <div class="progress-value" :style="getProgressStyle(item)"></div>
               <div class="progress-text">
-                <span>{{item.logTitle}}：</span>
+                <span>{{item.log_typeName}}：</span>
                 <span>{{item.num}}条</span>
               </div>
             </div>
           </div>
           <p>
-            <SysDayTypeTable :date="date" :logType="item.logType"></SysDayTypeTable>
+            <SysDayTypeTable :date="date" :logType="item.log_type"></SysDayTypeTable>
           </p>
         </a-collapse-panel>
       </a-collapse>
@@ -38,7 +38,7 @@ export default {
     return {
       loading:false,
       date:null,
-      typeData:[],
+      dayData:[],
       url:{
         getCountByGroupByLogType:"/logfv/web/getCountByGroupByLogType"
       }
@@ -57,9 +57,9 @@ export default {
   },
   methods:{
     getProgressStyle(item) {
-      let max = this.typeData[0].num
+      let max = this.dayData[0].num
       let width = (item.num/max)*100
-      return {backgroundColor:item.logColor,width:`${width}%`}
+      return {backgroundColor:item.display_color,width:`${width}%`}
     },
     setTitleStyle(){
       let els = document.getElementsByClassName('progress-value')
@@ -74,24 +74,8 @@ export default {
     this.setTitleStyle()
   },
   created() {
-    if(this.$route.params.typeData){
-      this.typeData = this.$route.params.typeData.map(c=>{
-        let logColor,logTitle = null
-        let webLogType = webLogTypeConfigs.find(t=>t.logType===c.log_type)
-        if(webLogType){
-          logColor = webLogType.displayColor
-          logTitle = webLogType.logTypeName
-        }else{
-          logColor = webLogTypeConfigs.find(w=>w.logType==='other').displayColor
-          logTitle = c.log_type
-        }
-        return {
-          logTitle,
-          logColor,
-          logType:c.log_type,
-          num:c.num
-        }
-      })
+    if(this.$route.params.dayData){
+      this.dayData = this.$route.params.dayData
     }
   }
 }

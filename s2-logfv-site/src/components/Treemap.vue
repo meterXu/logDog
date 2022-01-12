@@ -48,17 +48,21 @@ export default {
       let year = this.date.get('year')
       let month = this.date.get('month')+1
       if(this.datas&&typeof(this.datas)==='object'){
-        let keys= Object.keys(this.chartData)
-        this.datas.forEach(c=>{
-          if(c.record_year===year&&c.record_month===month){
-            this.chartData.init = true
-            if(keys.find(d=>d===c.log_type)){
+        let dateData = this.datas.filter(c=>c.record_year===year&&c.record_month===month)
+        if(dateData.length>0){
+          this.chartData.init = true
+          webLogTypeConfigs.forEach(t=>{
+            this.chartData[t.logType] = null
+          })
+          let keys =  Object.keys(this.chartData)
+          dateData.forEach(c=>{
+            if(keys.find(k=>k===c.log_type)){
               this.chartData[c.log_type] = c.num
             }else{
               this.chartData['other'] += c.num
             }
-          }
-        })
+          })
+        }
       }
     },
     initTreeMap(){

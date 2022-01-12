@@ -5,7 +5,7 @@ const project_logfvSite = {
   variable: {
     development: {
       ssoApi: "<请配置>",
-      baseApi: "http://192.168.253.128:9191/dpark-dataway-api/api",
+      baseApi: "http://58.210.9.133/iplatform/logfv-api/dpark-dataway-api/api",
       tokenKey:'X-Access-Token',
       accessTokenTime: 3600 * 1000,
       logfv:{

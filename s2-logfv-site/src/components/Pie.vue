@@ -22,16 +22,8 @@ export default {
   props: ["date","datas"],
   data(){
     return {
+      dayData:null,
       chartData:{
-        action: null,
-        page: null,
-        network: null,
-        exception: null,
-        info: null,
-        warn: null,
-        debug: null,
-        error: null,
-        other: null,
       },
       init:false,
       noValue:0.99
@@ -57,17 +49,26 @@ export default {
       let month = this.date.get('month')+1
       let day = this.date.get('D')
       if(this.datas&&typeof(this.datas)==='object'){
-        let keys= Object.keys(this.chartData)
-        this.datas.forEach(c=>{
-          if(c.record_year===year&&c.record_month===month&&c.record_day===day){
-            this.init = true
-            if(keys.find(d=>d===c.log_type)){
+        this.dayData = this.datas.filter(c=>c.record_year===year&&c.record_month===month&&c.record_day===day)
+        if(this.dayData.length>0){
+          this.init = true
+          webLogTypeConfigs.forEach(t=>{
+            this.chartData[t.logType] = {logTypeName:t.logTypeName,displayColor:t.displayColor}
+          })
+          let keys =  Object.keys(this.chartData)
+          let otherType = webLogTypeConfigs.find(w=>w.logType==='other')
+          this.dayData.forEach(c=>{
+            if(keys.find(k=>k===c.log_type)){
+              c.log_typeName=this.chartData[c.log_type].logTypeName
+              c.display_color=this.chartData[c.log_type].displayColor
               this.chartData[c.log_type] = c.num
             }else{
+              c.log_typeName=c.log_type
+              c.display_color=otherType.displayColor
               this.chartData['other'] += c.num
             }
-          }
-        })
+          })
+        }
       }
     },
     initPie() {
@@ -119,7 +120,7 @@ export default {
       option && myChart.setOption(option);
     },
     chickHandler(){
-      this.$emit('click',this.date,this.datas)
+      this.$emit('click',this.date,this.dayData)
     }
   }
 }
