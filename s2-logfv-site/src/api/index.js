@@ -9,7 +9,8 @@ export function staticPermission() {
                 name: '@getRoutesName(path)',
                 meta: {
                     icon:'dashboard',
-                    title: '仪表盘'
+                    title: '仪表盘',
+                    keepAlive:true
                 }
             },
             {
@@ -17,7 +18,8 @@ export function staticPermission() {
                 name: '@getRoutesName(path)',
                 meta: {
                     icon:'DoCalendar',
-                    title: '日历视图'
+                    title: '日历视图',
+                    keepAlive:true
                 }
             },
             {

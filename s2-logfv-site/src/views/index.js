@@ -21,7 +21,8 @@ export default util.parseRoutes([
     name: 'logfvSite_calendar_sysRanking',
     component: SysRanking,
     meta:{
-      title: '当日详情'
+      title: '当日详情',
+      keepAlive:true
     }
   },
   {
