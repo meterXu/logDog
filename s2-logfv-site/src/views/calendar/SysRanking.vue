@@ -82,7 +82,6 @@ export default {
           logColor = webLogType.displayColor
           logTitle = webLogType.logTypeName
         }else{
-          debugger
           logColor = webLogTypeConfigs.find(w=>w.logType==='other').displayColor
           logTitle = c.log_type
         }
