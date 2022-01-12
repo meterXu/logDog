@@ -89,12 +89,12 @@ export default {
         }break;
       }
     },
-    showSysRanking(date,typeData){
+    showSysRanking(date,datas){
       this.$router.push({
         name: `logfvSite_calendar_sysRanking`,
         params:{
           date:date,
-          typeData:typeData
+          typeData:datas
         }
       })
     }

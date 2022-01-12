@@ -96,20 +96,20 @@ export default {
       this.fmtDateRang()
       this.queryParam.deviceId=this.record.device_id
       let res = await getAction(this.url.queryTaskByDate, Object.assign(this.queryParam,{
-        pageNo: this.pagination.current,
-        pageSize: this.pagination.pageSize
+        pageNo: this.ipagination.current,
+        pageSize: this.ipagination.pageSize
       }))
       this.loading = false
       if (res.success) {
         this.innerData = res.value.pageData
-        this.pagination.total = res.value.pageInfo.totalCount
+        this.ipagination.total = res.value.pageInfo.totalCount
       }else {
         this.$message.warning(res.msg)
       }
     },
-    handleTableChange(pagination){
-      this.pagination.current = pagination.current
-      this.pagination.pageSize = pagination.pageSize
+    handleTableChange(ipagination){
+      this.ipagination.current = ipagination.current
+      this.ipagination.pageSize = ipagination.pageSize
       this.loadData()
     },
     logDetail(rowData){

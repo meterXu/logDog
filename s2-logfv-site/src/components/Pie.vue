@@ -119,7 +119,7 @@ export default {
       option && myChart.setOption(option);
     },
     chickHandler(){
-      this.$emit('click',this.date,this.chartData)
+      this.$emit('click',this.date,this.datas)
     }
   }
 }

@@ -75,15 +75,24 @@ export default {
   },
   created() {
     if(this.$route.params.typeData){
-      this.typeData = Object.keys(this.$route.params.typeData).map(c=>{
-        let webLogType = webLogTypeConfigs.find(t=>t.logType===c)
-        return {
-          logTitle:webLogType?webLogType.logTypeName:'-',
-          logColor:webLogType?webLogType.displayColor:null,
-          logType:c,
-          num:this.$route.params.typeData[c]
+      this.typeData = this.$route.params.typeData.map(c=>{
+        let logColor,logTitle = null
+        let webLogType = webLogTypeConfigs.find(t=>t.logType===c.log_type)
+        if(webLogType){
+          logColor = webLogType.displayColor
+          logTitle = webLogType.logTypeName
+        }else{
+          debugger
+          logColor = webLogTypeConfigs.find(w=>w.logType==='other').displayColor
+          logTitle = c.log_type
         }
-      }).sort((a,b)=>{return b.num-a.num}).filter(c=>c.num)
+        return {
+          logTitle,
+          logColor,
+          logType:c.log_type,
+          num:c.num
+        }
+      })
     }
   }
 }
