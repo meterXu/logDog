@@ -1,7 +1,7 @@
 server:
   port: 9191
   servlet:
-    context-path: /dpark-dataway-api
+    context-path: /dataway-api
     encoding:
       charset: utf-8
       enabled: true
@@ -12,7 +12,7 @@ sipsd:
 
 spring:
   application:
-    name: dpark-dataway
+    name: dataway
   datasource:
     driverClassName: com.mysql.jdbc.Driver
     driver-class-name:  com.mysql.jdbc.Driver

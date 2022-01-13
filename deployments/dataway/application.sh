@@ -1,7 +1,7 @@
 #!/bin/bash
 
 APP_DIR=.
-APP_NAME=dpark-dataway
+APP_NAME=dataway
 #PROFILES_ACTIVE=$2
 #iAPP_CONF=$APP_DIR/application.properties
 APP_CONF=config/application.yml

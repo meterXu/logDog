@@ -33,7 +33,7 @@ docker run -d -p 9999:8080 -p 9191:9191 -e DB_HOST=<dbhost> -e DB_NAME=<dbname> 
 
 * 日志查询界面：http:/192.168.1.1:9999/logfv
 * <span style='color:red'>日志上报接口：http://192.168.1.1:9999/logfv-server/logfv/web/upload </span>
-* 后端接口：http://192.168.1.1:9191/dpark-dataway-api/api
+* 后端接口：http://192.168.1.1:9191/dataway-api/api
 
 **说明** 192.168.1.1 请换成实际IP地址
 

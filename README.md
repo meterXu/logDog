@@ -30,7 +30,7 @@ logfv-server\WEB-INF\classes\db.properties.production
 1. 拷贝dpark-dataway至服务器
 2. 修改数据库配置
 ```
-dpark-dataway\config\application-prod.yml
+dataway\config\application-prod.yml
 ```
 
 ### 3、前端
@@ -38,7 +38,7 @@ dpark-dataway\config\application-prod.yml
 2. 修改配置文件
 ```
 s2-logfv\project.js
-后端地址(baseApi)一般为：http://xxx:9191/dpark-dataway-api/api
+后端地址(baseApi)一般为：http://xxx:9191/dataway-api/api
 ```
 
 ## docker部署

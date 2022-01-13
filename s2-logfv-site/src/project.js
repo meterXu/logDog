@@ -5,7 +5,7 @@ const project_logfvSite = {
   variable: {
     development: {
       ssoApi: "<请配置>",
-      baseApi: "http://192.168.253.128:9191/dpark-dataway-api/api",
+      baseApi: "http://192.168.253.128:9191/dataway-api/api",
       tokenKey:'X-Access-Token',
       accessTokenTime: 3600 * 1000,
       logfv:{
@@ -16,7 +16,7 @@ const project_logfvSite = {
     },
     production: {
       ssoApi: "<请配置>",
-      baseApi: "BASE_API/dpark-dataway-api/api",
+      baseApi: "BASE_API/dataway-api/api",
       tokenKey:'X-Access-Token',
       accessTokenTime: 3600 * 1000,
       logfv:{
@@ -27,7 +27,7 @@ const project_logfvSite = {
     },
     proxy:{
       ssoApi: "<请配置>",
-      baseApi: "http://192.168.253.128:9191/dpark-dataway-api/api",
+      baseApi: "http://192.168.253.128:9191/dataway-api/api",
       tokenKey:'X-Access-Token',
       accessTokenTime: 3600 * 1000,
       logfv:{

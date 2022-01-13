@@ -18,11 +18,11 @@ COPY logfv-server ./logfv-server
 COPY logfv-server.war ./logfv-server.war
 COPY nodejs ./nodejs
 COPY dbInit ./dbInit
-COPY dpark-dataway ./dpark-dataway
+COPY dataway ./dataway
 # 配置nodejs
 RUN mv /home/nodejs /usr/local/lib
 # 脚本赋权
-RUN chmod +x /home/dpark-dataway/application.sh
+RUN chmod +x /home/dataway/application.sh
 RUN chmod +x /home/docker-entrypoint.sh
 RUN chmod +x /usr/local/lib/nodejs/bin/node
 # 改变工作路径
