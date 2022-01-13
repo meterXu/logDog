@@ -8,6 +8,7 @@ ENV DB_USER=root
 ENV DB_PASSWD=${DB_PASSWD}
 ENV URL_PATH=logfv
 ENV BASE_API=${BASE_API}
+ENV TZ=Asia/Shanghai
 ENV PATH=/usr/local/lib/nodejs/bin:${PATH}
 USER root
 WORKDIR /home
@@ -19,6 +20,10 @@ COPY logfv-server.war ./logfv-server.war
 COPY nodejs ./nodejs
 COPY dbInit ./dbInit
 COPY dataway ./dataway
+RUN ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime \
+    && echo ${TZ} > /etc/timezone \
+    && dpkg-reconfigure --frontend noninteractive tzdata \
+    && rm -rf /var/lib/apt/lists/*
 # 配置nodejs
 RUN mv /home/nodejs /usr/local/lib
 # 脚本赋权
