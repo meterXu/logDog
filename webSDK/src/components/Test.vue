@@ -99,7 +99,7 @@ export default {
         let lf = new LogFv({
           reportUrl:this.$uploadUrl,
           appId:`test${i+1}`,
-          appName:'测试系统1',
+          appName:`测试系统${i+1}`,
           console:true,
           enable:true,
           reportConfig:{
