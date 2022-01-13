@@ -83,7 +83,7 @@ docker run -d -p 9999:8080 -p 9191:9191 -e DB_HOST=<dbhost> -e DB_NAME=<dbname> 
 version: "3"
 services:
   logfv:
-    image: 192.168.126.19:85/logfv/logfv:v1.0
+    image: 192.168.126.19:85/logfv/logfv:latest
     container_name: logfv-app
     environment:
       - DB_HOST=192.168.1.1
