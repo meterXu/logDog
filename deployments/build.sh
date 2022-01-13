@@ -1,6 +1,5 @@
 #!/bin/bash
-cd ..
-git pull origin master \
+cd .. \
 && cd deployments \
 && rm -rf logfv \
 && rm -rf logfv-server \
