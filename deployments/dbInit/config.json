@@ -1,8 +1,7 @@
 {
-  "host":"192.168.253.128",
-  "port":3306,
-  "user": "root",
-  "password": "123456",
-  "database": "logfv"
+  "host":"DB_HOST",
+  "port":DB_PORT,
+  "user": "DB_USER",
+  "password": "DB_PASSWD",
+  "database": "DB_NAME"
 }
-
