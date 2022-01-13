@@ -15,7 +15,7 @@ sed -i 's@DB_HOST@'$DB_HOST'@g;s@DB_PORT@'$DB_PORT'@g;s@DB_PORT@'$DB_PORT'@g;s@D
 sed -i 's@BASE_API@'$BASE_API'@g' ./$URL_PATH/biz/logfvSite/js/project.*
 sed -i 's@DB_HOST@'$DB_HOST'@g;s@DB_PORT@'$DB_PORT'@g;s@DB_NAME@'$DB_NAME'@g;s@DB_USER@'$DB_USER'@g;s@DB_PASSWD@'$DB_PASSWD'@g' ./dataway/config/application-prod.yml
 sed -i 's@DB_HOST@'$DB_HOST'@g;s@DB_PORT@'$DB_PORT'@g;s@DB_NAME@'$DB_NAME'@g;s@DB_USER@'$DB_USER'@g;s@DB_PASSWD@'$DB_PASSWD'@g' ./dbInit/config.json
-sed -i 's@DB_HOST@'$DB_HOST'@g;s@DB_PORT@'$DB_PORT'@g;s@DB_NAME@'$DB_NAME'@g;s@DB_USER@'$DB_USER'@g;s@DB_PASSWD@'$DB_PASSWD'@g' ./dbInit/dbsql/initDB.sql
+sed -i 's@DB_HOST@'$DB_HOST'@g;s@DB_PORT@'$DB_PORT'@g;s@DB_NAME@'$DB_NAME'@g;s@DB_USER@'$DB_USER'@g;s@DB_PASSWD@'$DB_PASSWD'@g' ./dbInit/dbsql/data.sql
 # 初始化表,启动服务
 cd ./dbInit && node ./index.js
 cd ../dataway && mkdir logs && ./application.sh start \
