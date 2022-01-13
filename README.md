@@ -8,9 +8,8 @@
 | 后台server  | 接收、存储、分析日志 |[Server](./server)|
 | 前台Web     | 展示，查询日志       |[s2-logfv-site](./s2-logfv-site)|
 | docker部署| 一键docker部署       |[deployments](./deployments)|
-## 一、部署
-### 手动部署
-#### 1、数据库
+## 一、手动部署
+### 1、数据库
 
 * 建库脚本
 ```sql=
@@ -20,7 +19,7 @@ create schema logfv collate utf8_general_ci;
 * 表数据脚本：`deployments\dbInit\data.sql`
 * 更新脚本：`deployments\dbInit\update.sql`
 
-#### 2、后端
+### 2、后端
 **上报服务**
 
 1. 拷贝logfv-server.war至服务的tomcat的webapps目录下
@@ -35,7 +34,7 @@ logfv-server\WEB-INF\classes\db.properties.production
 dataway\config\application-prod.yml
 ```
 
-#### 3、前端
+### 3、前端
 1. 拷贝s2-logfv至nginx的html目录
 2. 修改配置文件
 ```
@@ -43,12 +42,12 @@ s2-logfv\project.js
 后端地址(baseApi)一般为：http://xxx:9191/dataway-api/api
 ```
 
-### docker部署
-#### 1. 新建一个数据库
+## 二、docker部署
+### 1. 新建一个数据库
 ```sql=
 create schema logfv collate utf8_general_ci;
 ```
-#### 2. 修改通信方式为http
+### 2. 修改通信方式为http
 `vi /etc/docker/daemon.json`
 
 在这个文件中添加如下内容：
@@ -62,7 +61,7 @@ create schema logfv collate utf8_general_ci;
 systemctl daemon-reload
 systemctl restart docker
 ```
-#### 3. 启动容器
+### 3. 启动容器
 ```bash=
 docker run -d -p 9999:8080 -p 9191:9191 -e DB_HOST=<dbhost> -e DB_NAME=<dbname> -e DB_PASSWD=<password> -e BASE_API=<baseapi> 192.168.126.19:85/logfv/logfv:v1
 # 以下参数替换
@@ -71,7 +70,7 @@ docker run -d -p 9999:8080 -p 9191:9191 -e DB_HOST=<dbhost> -e DB_NAME=<dbname> 
 # <password>
 # <baseapi>
 ```
-#### 4. 访问系统
+### 4. 访问系统
 
 * 日志查询界面：http:/192.168.1.1:9999/logfv
 * <span style='color:red'>日志上报接口：http://192.168.1.1:9999/logfv-server/logfv/web/upload </span>
@@ -79,7 +78,7 @@ docker run -d -p 9999:8080 -p 9191:9191 -e DB_HOST=<dbhost> -e DB_NAME=<dbname> 
 
 **说明** 192.168.1.1 请换成实际IP地址
 
-### 使用docker-compose
+### 使用 docker-compose
 ```bash=
 version: "3"
 services:
