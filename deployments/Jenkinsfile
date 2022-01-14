@@ -5,20 +5,10 @@ pipeline {
             steps {
                 git branch: 'master', credentialsId: 'c078ac92-89dd-4842-8292-5e348e68db08', url: 'http://192.168.126.25/git/scri/our-dev-group/logfv.git'
             }
-            post {
-                success {
-                    echo '拉取代码成功 '
-                }
-            }
         }
         stage('镜像构建'){
             steps {
                 sh "cd ./deployments && chmod a+x ./build.sh && sh ./build.sh"
-            }
-            post {
-                success {
-                    echo '镜像构建成功 '
-                }
             }
         }
         stage('镜像推送到远程仓库'){
@@ -31,11 +21,6 @@ pipeline {
                     echo "删除本地logfv:latest镜像"
                     sh "docker rmi 192.168.126.19:85/logfv/logfv:latest"
                 }
-            post {
-                success {
-                    echo '镜像推送成功 '
-                }
-            }
         }
         stage('远程启动容器') {
              steps {
@@ -51,33 +36,23 @@ pipeline {
                     }
 
              }
-             post {
-                success {
-                    echo '启动容器成功 '
-                }
-             }
-         }
-         post {
-                success {
-                    dingtalk (
-                        robot: '360ac2ce-efe5-4478-8703-7cd3bd463044',
-                        type: 'ACTION_CARD',
-                        at: [],
-                        atAll: false,
-                        title: '沃壤前端日志系统构建',
-                        text: ["项目名称：沃壤赋能平台前端日志系统",
-                               "任务：#56",
-                               "状态：成功",
-                               "持续时间：14 秒",
-                               "执行人：Started by GitLab push by 粟宣艳"],
-                        messageUrl: '',
-                        picUrl: '',
-                        singleTitle: '',
-                        btns: [],
-                        btnLayout: '',
-                        hideAvatar: false
-                    )
-                }
-            }
+        }
+    }
+    post {
+        success {
+            dingtalk(robot: '360ac2ce-efe5-4478-8703-7cd3bd463044',
+            type: 'ACTION_CARD',
+            at: [],
+            atAll: false,
+            title: '沃壤前端日志系统',
+            text: ["项目名称：沃壤赋能平台前端日志系统","任务：#56","状态：成功","持续时间：14 秒","执行人：Started by GitLab push by 粟宣艳"],
+            messageUrl: '',
+            picUrl: '',
+            singleTitle: '',
+            btns: [],
+            btnLayout: '',
+            hideAvatar: false
+            )
+        }
     }
 }
