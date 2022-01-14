@@ -45,7 +45,7 @@ pipeline {
             at: [],
             atAll: false,
             title: '沃壤前端日志系统',
-            text: ["* 项目名称：沃壤赋能平台前端日志系统","* 任务：#${BUILD_NUMBER}","* 状态：成功","* 执行人：Started by GitLab push by ${GIT_AUTHOR_NAME}"],
+            text: ["* 项目名称：沃壤赋能平台前端日志系统","* 任务：#${BUILD_NUMBER}","* 状态：成功","* 执行人：Started by GitLab push by ${env.GIT_AUTHOR_NAME} "],
             messageUrl: '',
             picUrl: '',
             singleTitle: '',
