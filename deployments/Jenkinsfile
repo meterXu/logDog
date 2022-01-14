@@ -50,7 +50,7 @@ pipeline {
             picUrl: '',
             singleTitle: '',
             btns: [],
-            btnLayout: '',
+            btnLayout: 'H',
             hideAvatar: false
             )
         }
