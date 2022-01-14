@@ -1,10 +1,10 @@
 pipeline {
     agent any
     stages {
-        def f = new File("/tmp/buildStart.txt")
-        def startDate = new Date().parse('dd/MM/yyyy HH:mm:ss',f.text)
         stage('拉取代码') {
             steps {
+                def f = new File("/tmp/buildStart.txt")
+                def startDate = new Date().parse('dd/MM/yyyy HH:mm:ss',f.text)
                 git branch: 'master', credentialsId: 'c078ac92-89dd-4842-8292-5e348e68db08', url: 'http://192.168.126.25/git/scri/our-dev-group/logfv.git'
             }
         }
@@ -41,9 +41,9 @@ pipeline {
         }
     }
     post {
-       def endDate = new Date()
-       def tookTime = groovy.time.TimeCategory.minus(endDate,startDate).toString()
         success {
+            def endDate = new Date()
+            def tookTime = groovy.time.TimeCategory.minus(endDate,startDate).toString()
             dingtalk(robot: '360ac2ce-efe5-4478-8703-7cd3bd463044',
             type: 'ACTION_CARD',
             at: [],
@@ -62,6 +62,8 @@ pipeline {
             )
         }
         failure {
+            def endDate = new Date()
+            def tookTime = groovy.time.TimeCategory.minus(endDate,startDate).toString()
             dingtalk(robot: '360ac2ce-efe5-4478-8703-7cd3bd463044',
             type: 'ACTION_CARD',
             at: [],
