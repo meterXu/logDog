@@ -1,6 +1,8 @@
 pipeline {
     agent any
     stages {
+        def f = new File("/tmp/buildStart.txt")
+        def startDate = new Date().parse('dd/MM/yyyy HH:mm:ss',f.text)
         stage('拉取代码') {
             steps {
                 git branch: 'master', credentialsId: 'c078ac92-89dd-4842-8292-5e348e68db08', url: 'http://192.168.126.25/git/scri/our-dev-group/logfv.git'
@@ -39,17 +41,47 @@ pipeline {
         }
     }
     post {
+       def endDate = new Date()
+       def tookTime = groovy.time.TimeCategory.minus(endDate,startDate).toString()
         success {
             dingtalk(robot: '360ac2ce-efe5-4478-8703-7cd3bd463044',
             type: 'ACTION_CARD',
             at: [],
             atAll: false,
             title: '沃壤前端日志系统',
-            text: ["* 项目名称：沃壤赋能平台前端日志系统","* 任务：#${BUILD_NUMBER}","* 状态：成功","* 执行人：Started by GitLab push by ${env.GIT_AUTHOR_NAME} "],
+            text: ["* 项目名称：沃壤赋能平台前端日志系统","* 任务：#${BUILD_NUMBER}",
+            "* 状态：<span style='color:green'>成功</span>",
+            "* 持续时间：${tookTime} 秒",
+            "* 执行人：Started by GitLab push by ${env.GIT_COMMITTER_NAME} "],
             messageUrl: '',
             picUrl: '',
             singleTitle: '',
             btns: [],
+            btnLayout: 'H',
+            hideAvatar: false
+            )
+        }
+        failure {
+            dingtalk(robot: '360ac2ce-efe5-4478-8703-7cd3bd463044',
+            type: 'ACTION_CARD',
+            at: [],
+            atAll: false,
+            title: '沃壤前端日志系统',
+            text: ["* 项目名称：沃壤赋能平台前端日志系统","* 任务：#${BUILD_NUMBER}",
+            "* 状态：<span style='color:red'>失败</span>",
+            "* 持续时间：${tookTime} 秒",
+            "* 执行人：Started by GitLab push by ${env.GIT_COMMITTER_NAME} "],
+            messageUrl: '',
+            picUrl: '',
+            singleTitle: '',
+            btns: [{
+                title:'更改记录',
+                actionUrl:'${BUILD_URL}}/changes'
+            },
+            {
+                title:'控制台',
+                actionUrl:'${BUILD_URL}/console'
+            }],
             btnLayout: 'H',
             hideAvatar: false
             )
