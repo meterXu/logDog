@@ -75,12 +75,12 @@ pipeline {
             picUrl: '',
             singleTitle: '',
             btns: [{
-                title:'更改记录',
-                actionUrl:'${BUILD_URL}}/changes'
+                title: '更改记录',
+                actionUrl: '${BUILD_URL}}/changes'
             },
             {
-                title:'控制台',
-                actionUrl:'${BUILD_URL}/console'
+                title: '控制台',
+                actionUrl: '${BUILD_URL}/console'
             }],
             btnLayout: 'H',
             hideAvatar: false
