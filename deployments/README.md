@@ -7,6 +7,7 @@
 * dataway 后端接口生成服务
 * dbInit 数据库初始化程序，包含数据库初始化脚本
 * nodejs nodejs程序包
+* Jenkinsfile Jenkins流水线配置
 
 ## 镜像编译
 
