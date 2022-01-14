@@ -45,7 +45,8 @@ pipeline {
             at: [],
             atAll: false,
             title: '沃壤前端日志系统',
-            text: ["* 项目名称：沃壤赋能平台前端日志系统",
+            text: [
+            "* 项目名称：沃壤赋能平台前端日志系统",
             "* 任务：#${BUILD_NUMBER}",
             "* 状态：<font color=#00EE00 >成功</font>",
             "* 持续时间：${currentBuild.durationString}".split("and counting")[0],
@@ -65,7 +66,8 @@ pipeline {
             at: [],
             atAll: false,
             title: '沃壤前端日志系统',
-            text: ["* 项目名称：沃壤赋能平台前端日志系统",
+            text: [
+            "* 项目名称：沃壤赋能平台前端日志系统",
             "* 任务：#${BUILD_NUMBER}",
             "* 状态：<font color=#EE0000 >失败</font>",
             "* 持续时间：${currentBuild.durationString}".split("and counting")[0],
