@@ -42,7 +42,7 @@ const project_logfvSite = {
     index: '/logfvSite/dashboard/index'
   },
   style: {
-    theme: 'light',
+    theme: 'dark-vue-admin',
     color: '#1890FF',
     layout: 'topmenu',
     multipage: true,
