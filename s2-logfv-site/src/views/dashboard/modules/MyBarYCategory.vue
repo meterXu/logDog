@@ -39,7 +39,7 @@ export default {
       getchart.clear()
       this.dataSource.forEach(function(value){
         yAxisData.unshift(value.device_name)
-        seriesData.unshift(value.log_page_num)
+        seriesData.unshift(value.log_count)
       })
       let options = {
         tooltip: {
@@ -50,13 +50,13 @@ export default {
           formatter: function (params) {
             let relVal = params[0].name;
             for (let i = 0, l = params.length; i < l; i++) {
-              relVal += '<br/>' + params[i].marker + params[i].seriesName + ' : ' + params[i].value + '片'
+              relVal += '<br/>' + params[i].marker + params[i].seriesName + ' : ' + params[i].value + '条'
             }
             return relVal;
           }
         },
         legend: {
-            data: ['系统日志分片数']
+            data: ['应用日志数']
         },
         grid: {
             left: '20%',
@@ -73,7 +73,7 @@ export default {
         },
         series: [
             {
-                name: '系统日志分片数',
+                name: '应用日志数',
                 type: 'bar',
                 data: seriesData
             }

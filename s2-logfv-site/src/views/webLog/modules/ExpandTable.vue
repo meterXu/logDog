@@ -40,9 +40,9 @@ export default {
           }
         },
         {
-          title: '日志分片数',
+          title: '日志数',
           align: 'center',
-          dataIndex: 'log_page_num'
+          dataIndex: 'log_count'
         },
         {
           title: '操作',

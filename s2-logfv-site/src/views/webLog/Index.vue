@@ -134,10 +134,10 @@ export default {
           }
         },
         {
-          title: '日志分片总数',
+          title: '日志总数',
           align: 'center',
           width: 200,
-          dataIndex: 'log_page_num'
+          dataIndex: 'log_count'
         }
       ],
       innerColumns: [

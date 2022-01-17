@@ -42,7 +42,7 @@
           <a-row >
             <a-col :span="20">
               <div class="chart-card-header">
-                <div class="meta"><span class="chart-card-title">分片总数</span></div>
+                <div class="meta"><span class="chart-card-title">日志总数</span></div>
                 <div class="total">
                   <span v-if="queryTotalPage">{{queryTotalPage}}</span>
                   <a-spin v-else></a-spin>
@@ -95,7 +95,7 @@
         <a-card :loading="loading" :bordered="false" :body-style="{padding: '0'}">
           <div class="salesCard">
             <a-tabs default-active-key="1" size="large" :tab-bar-style="{marginBottom: '24px', paddingLeft: '16px'}">
-              <a-tab-pane loading="true" tab="系统日志排行榜" key="1">
+              <a-tab-pane loading="true" tab="应用日志排行榜" key="1">
                 <a-row>
                   <div class="example_bar" v-show="!barYCategoryShow">
                     <a-spin size="large"/>
