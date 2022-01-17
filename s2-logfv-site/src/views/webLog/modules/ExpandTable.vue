@@ -12,7 +12,7 @@
       @change="handleTableChange"
   >
           <span slot="action" slot-scope="text, record">
-            <a @click="logDetail(record)">查看详细</a>
+            <a @click="logDetail(record)">查看详情</a>
           </span>
   </a-table>
 </template>
@@ -113,7 +113,18 @@ export default {
       this.loadData()
     },
     logDetail(rowData){
-      this.$router.push({ path: `/logfvSite/webLog/dateLogDetail/${rowData.device_id}/${this.record.device_name}/${rowData.log_date}/0`})
+      this.$router.push({
+        name:'logfvSite_webLog_dateLogDetail',
+        params:{
+          deviceId:rowData.device_id,
+          deviceName:this.record.device_name,
+          logDate:rowData.log_date,
+          logType:0
+        },
+        meta:{
+          title:`详情_${this.record.device_name}`
+        }
+      })
     }
   },
   mounted() {

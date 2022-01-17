@@ -92,18 +92,13 @@ export default {
   },
   methods:{
     getDataLogIndexData(params){
-      if(!params) {
-        params = Object.assign(this.queryParam,{
-          deviceId:this.deviceId,
-          logDate:this.logDate
-        },{
-          pageNo:this.pagination.pageNo,
-          pageSize:this.pagination.pageSize
-        })
-        if(this.logType!=='0'){
-          params.logType = this.logType
-        }
-      }
+      params = Object.assign(params,{
+        deviceId:this.deviceId,
+        logDate:this.logDate
+      },{
+        pageNo:this.pagination.pageNo,
+        pageSize:this.pagination.pageSize
+      })
       this.loading=true
       getAction(this.url.dateLogIndex,params).then(res=>{
         if (res.success) {
@@ -135,14 +130,22 @@ export default {
     },
     search(queryParam){
       let params = Object.assign(this.queryParam,queryParam)
-      params.logType=params.logType.toString()
-      params.startTime=new Date(parseInt(this.logDate)-3600000*8+queryParam.startHour*3600000).valueOf()
-      params.endTime=new Date(parseInt(this.logDate)-3600000*8+queryParam.endHour*3600000).valueOf()
+      if(params.logType=='0'||params.logType.length===0){
+        params.logType=''
+      }else{
+        params.logType=params.logType.toString()
+      }
+      params.startTime=new Date( `${this.date} ${queryParam.startHour}:00:00`).valueOf()
+      params.endTime=new Date( `${this.date} ${queryParam.endHour}:00:00`).valueOf()
       this.getDataLogIndexData(params)
     }
   },
   created() {
-    this.getDataLogIndexData()
+    this.search({
+      logType:this.logType,
+      startHour:0,
+      endHour:24
+    })
   }
 }
 </script>

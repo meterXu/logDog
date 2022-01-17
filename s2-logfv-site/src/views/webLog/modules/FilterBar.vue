@@ -83,7 +83,7 @@ export default {
     }
   },
   created() {
-    if(this.logType){
+    if(this.logType&&this.logType!=='0'){
       this.queryParam.logType=[this.logType]
     }
   }

@@ -32,11 +32,8 @@ export default util.parseRoutes([
   },
   {
     path: '/logfvSite/webLog/dateLogDetail/:deviceId/:deviceName/:logDate/:logType',
-    name: '@getRoutesName(path)',
+    name: 'logfvSite_webLog_dateLogDetail',
     component: DateLogDetail,
-    meta:{
-      title:'查看详细'
-    },
     props:true
   }
 ])
