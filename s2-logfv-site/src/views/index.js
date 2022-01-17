@@ -22,7 +22,7 @@ export default util.parseRoutes([
     component: SysRanking,
     meta:{
       title: '当日详情',
-      keepAlive:true
+      keepAlive:false
     }
   },
   {
