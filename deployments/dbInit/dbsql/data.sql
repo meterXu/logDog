@@ -210,13 +210,13 @@ var dataSet = @@mybatis(year,month)<%
      select log_type,record_year,record_month,record_day,count(log_type) as num from web_detail
      where record_year = #{year} and record_month = #{month}
      group by log_type,record_year,record_month,record_day
-     order by record_month,record_day,log_type
+     order by record_month,record_day,num desc
     </if>
     <if test="year != '''' and month == ''''">
      select log_type,record_year,record_month,count(log_type) as num from web_detail
      where record_year = #{year}
      group by log_type,record_year,record_month
-     order by record_month, log_type
+     order by record_month, num desc
     </if>
  </select>
 %>
@@ -531,13 +531,13 @@ var dataSet = @@mybatis(year,month)<%
      select log_type,record_year,record_month,record_day,count(log_type) as num from web_detail
      where record_year = #{year} and record_month = #{month}
      group by log_type,record_year,record_month,record_day
-     order by record_month,record_day,log_type
+     order by record_month,record_day,num desc
     </if>
     <if test="year != '''' and month == ''''">
      select log_type,record_year,record_month,count(log_type) as num from web_detail
      where record_year = #{year}
      group by log_type,record_year,record_month
-     order by record_month, log_type
+     order by record_month, num desc
     </if>
  </select>
 %>
