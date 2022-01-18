@@ -20,7 +20,7 @@
             </div>
           </div>
           <p>
-            <SysDayTypeTable :datetime="datetime" :logType="item.log_type"></SysDayTypeTable>
+            <SysDayTypeTable :dateTime="dateTime" :logType="item.log_type"></SysDayTypeTable>
           </p>
         </a-collapse-panel>
       </a-collapse>
@@ -32,25 +32,26 @@
 import {webLogTypeConfigs} from '../../mixins/logtypes'
 import SysDayTypeTable from "./modules/SysDayTypeTable";
 import moment from "moment";
+import {getAction} from "../../api/manage";
 export default {
   name: "SysRanking",
   components: {SysDayTypeTable},
+  props:["timestamp"],
   data(){
     return {
       loading:false,
-      datetime:null,
+      dateTime:null,
       dayData:[],
       url:{
+        getDayLogType:"/logfv/web/getDayLogType",
         getCountByGroupByLogType:"/logfv/web/getCountByGroupByLogType"
       }
     }
   },
   computed:{
     myDate(){
-      if(this.$route.query.timestamp){
-        let timestamp = parseInt(this.$route.query.timestamp)
-        this.datetime = new moment(timestamp)
-        return this.datetime.format('YYYY-MM-DD')
+      if(this.dateTime){
+        return this.dateTime.format('YYYY-MM-DD')
       }
       else{
         return '-'
@@ -70,15 +71,45 @@ export default {
           document.getElementsByClassName('progress-text')[i].setAttribute('style','color:#5c5c5c')
         }
       }
+    },
+    getDayData(){
+      if(this.dateTime){
+        getAction(this.url.getDayLogType,{
+          year:this.dateTime.get('year'),
+          month:this.dateTime.get('month')+1,
+          day:this.dateTime.get('date')
+        }).then(res=>{
+          this.dayData = res.value.map(c=>{
+            let logType = webLogTypeConfigs.find(w=>w.logType===c.log_type)
+            let otherType = webLogTypeConfigs.find(w=>w.logType==='other')
+            if(logType){
+              return {
+                log_type:c.log_type,
+                log_typeName:logType.logTypeName,
+                display_color:logType.displayColor,
+                num:c.num
+              }
+            }else{
+              return {
+                log_type:c.log_type,
+                log_typeName:c.log_type,
+                display_color:otherType.displayColor,
+                num:c.num
+              }
+            }
+          })
+          this.$nextTick(()=>{
+            this.setTitleStyle()
+          })
+        })
+      }
     }
-  },
-  mounted() {
-    this.setTitleStyle()
   },
   created() {
-    if(this.$route.query.dayData){
-      this.dayData = JSON.parse(this.$route.query.dayData)
+    if(this.timestamp){
+      this.dateTime = new moment(parseInt(this.timestamp))
     }
+    this.getDayData()
   }
 }
 </script>

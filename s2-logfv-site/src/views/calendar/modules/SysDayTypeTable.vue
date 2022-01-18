@@ -26,7 +26,7 @@ import moment from "moment";
 export default {
   name: "SysDayTypeTable",
   mixins:[JeecgListMixin],
-  props:["datetime","logType"],
+  props:["dateTime","logType"],
   data(){
     return {
       columns:[
@@ -106,9 +106,9 @@ export default {
         this.ipagination.current = 1
       }
       this.expandedRowKeys=[]
-      let year = this.datetime.get('year')
-      let month = this.datetime.get('month')+1
-      let day = this.datetime.get('date')
+      let year = this.dateTime.get('year')
+      let month = this.dateTime.get('month')+1
+      let day = this.dateTime.get('date')
       let params = Object.assign(this.queryParam,{
         pageNo: this.ipagination.current,
         pageSize: this.ipagination.pageSize,

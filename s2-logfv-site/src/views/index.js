@@ -17,13 +17,14 @@ export default util.parseRoutes([
     component: CalendarView
   },
   {
-    path: '/logfvSite/calendar/sysRanking',
+    path: '/logfvSite/calendar/sysRanking/:timestamp',
     name: 'logfvSite_calendar_sysRanking',
     component: SysRanking,
     meta:{
       title: '当日详情',
       keepAlive:false
-    }
+    },
+    props: true
   },
   {
     path: '/logfvSite/webLog/index',
