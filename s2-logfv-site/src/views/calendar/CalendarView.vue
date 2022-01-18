@@ -92,9 +92,9 @@ export default {
     showSysRanking(date,dayData){
       this.$router.push({
         name: `logfvSite_calendar_sysRanking`,
-        params:{
-          date:date,
-          dayData:dayData
+        query:{
+          timestamp:date.valueOf(),
+          dayData:JSON.stringify(dayData)
         }
       })
     }

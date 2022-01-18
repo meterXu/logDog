@@ -20,7 +20,7 @@
             </div>
           </div>
           <p>
-            <SysDayTypeTable :date="date" :logType="item.log_type"></SysDayTypeTable>
+            <SysDayTypeTable :datetime="datetime" :logType="item.log_type"></SysDayTypeTable>
           </p>
         </a-collapse-panel>
       </a-collapse>
@@ -31,13 +31,14 @@
 <script>
 import {webLogTypeConfigs} from '../../mixins/logtypes'
 import SysDayTypeTable from "./modules/SysDayTypeTable";
+import moment from "moment";
 export default {
   name: "SysRanking",
   components: {SysDayTypeTable},
   data(){
     return {
       loading:false,
-      date:null,
+      datetime:null,
       dayData:[],
       url:{
         getCountByGroupByLogType:"/logfv/web/getCountByGroupByLogType"
@@ -46,11 +47,12 @@ export default {
   },
   computed:{
     myDate(){
-      let date = this.$route.params.date
-      this.date = date
-      if(date){
-        return date.format('YYYY-MM-DD')
-      }else{
+      if(this.$route.query.timestamp){
+        let timestamp = parseInt(this.$route.query.timestamp)
+        this.datetime = new moment(timestamp)
+        return this.datetime.format('YYYY-MM-DD')
+      }
+      else{
         return '-'
       }
     }
@@ -74,8 +76,8 @@ export default {
     this.setTitleStyle()
   },
   created() {
-    if(this.$route.params.dayData){
-      this.dayData = this.$route.params.dayData
+    if(this.$route.query.dayData){
+      this.dayData = JSON.parse(this.$route.query.dayData)
     }
   }
 }

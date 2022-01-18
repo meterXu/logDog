@@ -121,8 +121,10 @@ export default {
           logDate:rowData.log_date,
           logType:0
         },
-        meta:{
-          title:`详情_${this.record.device_name}`
+        query:{
+          meta:{
+            title:`详情_${this.record.device_name}_${moment(parseInt(rowData.log_date)).format('YYYY-MM-DD')}`
+          }
         }
       })
     }

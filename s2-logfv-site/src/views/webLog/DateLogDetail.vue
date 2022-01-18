@@ -140,13 +140,13 @@ export default {
       this.getDataLogIndexData(params)
     }
   },
-  created() {
+  mounted() {
     this.search({
       logType:this.logType,
       startHour:0,
       endHour:24
     })
-  }
+  },
 }
 </script>
 

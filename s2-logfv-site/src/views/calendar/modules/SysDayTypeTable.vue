@@ -22,10 +22,11 @@
 <script>
 import {JeecgListMixin} from '../../../mixins/JeecgListMixin'
 import {getAction} from "../../../api/manage";
+import moment from "moment";
 export default {
   name: "SysDayTypeTable",
   mixins:[JeecgListMixin],
-  props:["date","logType"],
+  props:["datetime","logType"],
   data(){
     return {
       columns:[
@@ -79,7 +80,22 @@ export default {
   },
   methods:{
     logDetail(record){
-      this.$router.push({ path: `/logfvSite/webLog/dateLogDetail/${record.device_id}/${record.device_name}/${record.log_date}/${this.logType}`})
+      this.$router.push(
+          {
+            name:'logfvSite_webLog_dateLogDetail',
+            params:{
+              deviceId:record.device_id,
+              deviceName:record.device_name,
+              logDate:record.log_date,
+              logType:this.logType
+            },
+            query:{
+              meta:{
+                title:`详情_${record.device_name}_${moment(parseInt(record.log_date)).format('YYYY-MM-DD')}`
+              }
+            }
+          }
+      )
     },
     loadData(arg){
       if (!this.url.list) {
@@ -90,9 +106,9 @@ export default {
         this.ipagination.current = 1
       }
       this.expandedRowKeys=[]
-      let year = this.date.get('year')
-      let month = this.date.get('month')+1
-      let day = this.date.get('date')
+      let year = this.datetime.get('year')
+      let month = this.datetime.get('month')+1
+      let day = this.datetime.get('date')
       let params = Object.assign(this.queryParam,{
         pageNo: this.ipagination.current,
         pageSize: this.ipagination.pageSize,
