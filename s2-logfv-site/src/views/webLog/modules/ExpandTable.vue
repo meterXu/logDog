@@ -122,9 +122,9 @@ export default {
           logType:0
         },
         query:{
-          meta: JSON.stringify({
+          meta: encodeURIComponent(JSON.stringify({
             title:`详情_${this.record.device_name}_${moment(parseInt(rowData.log_date)).format('YYYY-MM-DD')}`
-          })
+          }))
         }
       })
     }

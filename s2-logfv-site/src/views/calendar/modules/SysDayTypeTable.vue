@@ -90,9 +90,9 @@ export default {
               logType:this.logType
             },
             query:{
-              meta:JSON.stringify({
+              meta:encodeURIComponent(JSON.stringify({
                 title:`详情_${record.device_name}_${moment(parseInt(record.log_date)).format('YYYY-MM-DD')}`
-              })
+              }))
             }
           }
       )

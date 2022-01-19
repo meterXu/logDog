@@ -96,9 +96,9 @@ export default {
           timestamp:date.valueOf()
         },
         query:{
-          meta:JSON.stringify({
+          meta:encodeURIComponent(JSON.stringify({
             title:`详情_${date.format('YYYY-MM-DD')}`
-          })
+          }))
         }
       })
     }
