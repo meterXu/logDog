@@ -12,6 +12,19 @@ module.exports = {
     config.entry = {
       [namespace]: ["./src/main.js"]
     }
+      if (process.env.NODE_ENV === 'production') {
+          config.optimization.minimizer[0].options.terserOptions.compress.drop_console = true
+          config.optimization.runtimeChunk = false
+          config.optimization.splitChunks = {
+              chunks: 'all',
+              maxSize: 102400,
+              maxAsyncRequests: 5,
+              maxInitialRequests: 3,
+              cacheGroups: {
+                  default: false
+              }
+          }
+      }
     return {
       output: {
         library: namespace,
@@ -19,14 +32,6 @@ module.exports = {
           ? `biz/${namespace}/js/[id].[contenthash:4].js`
           : '[id].js' ,
         chunkFilename: `biz/${namespace}/js/${namespace}.vendors.[contenthash:4].js`,
-      },
-      optimization: {
-        runtimeChunk: false, // 依赖处理与bundle合并
-        splitChunks: {
-          cacheGroups: {
-            default: false
-          }
-        }
       },
       plugins:[
         new CopyPlugin({patterns:
