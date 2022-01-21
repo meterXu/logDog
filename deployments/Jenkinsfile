@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('拉取代码') {
             steps {
-                git branch: 'master', credentialsId: 'c078ac92-89dd-4842-8292-5e348e68db08', url: 'http://192.168.126.25/git/scri/our-dev-group/logfv.git'
+                git branch: 'master', credentialsId: 'c078ac92-89dd-4842-8292-5e348e68db08', url: 'http://192.168.126.25/git/cbb/logfv.git'
             }
         }
         stage('镜像构建'){
