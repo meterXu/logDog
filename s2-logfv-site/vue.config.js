@@ -13,7 +13,6 @@ module.exports = {
       [namespace]: ["./src/main.js"]
     }
       if (process.env.NODE_ENV === 'production') {
-          config.optimization.minimizer[0].options.terserOptions.compress.drop_console = true
           config.optimization.runtimeChunk = false
           config.optimization.splitChunks = {
               chunks: 'all',
