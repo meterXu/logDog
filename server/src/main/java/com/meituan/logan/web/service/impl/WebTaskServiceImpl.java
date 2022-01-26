@@ -36,10 +36,12 @@ public class WebTaskServiceImpl implements WebTaskService {
                     taskDTO.getPageNum());
             if (exist != null) {
                 webLogTaskMapper.updateContent(exist.getTaskId(), taskDTO.getContent());
+                return exist.getTaskId();
             } else {
                 webLogTaskMapper.insert(taskDTO);
+                return taskDTO.getTaskId();
             }
-            return taskDTO.getTaskId();
+
         } catch (Exception e) {
             LOGGER.error(e);
         }
