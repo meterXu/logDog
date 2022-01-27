@@ -1,5 +1,6 @@
 import { getActionSSO } from './manage'
 import {util} from "@dpark/s2-utils"
+import {DoCalendar} from '@dpark/icon'
 
 export function staticPermission() {
     return {
@@ -17,7 +18,11 @@ export function staticPermission() {
                 path: '/logfvSite/calendar/index',
                 name: '@getRoutesName(path)',
                 meta: {
-                    icon:'DoCalendar',
+                    icon:{
+                        render(){
+                            return (<DoCalendar/>)
+                        }
+                    },
                     title: '日历视图',
                     keepAlive:true
                 }

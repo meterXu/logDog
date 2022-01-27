@@ -15,7 +15,8 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
-    "@dpark/s2-utils": "^1.0.39",
+    "@dpark/icon": "^1.0.21",
+    "@dpark/s2-utils": "^1.0.40",
     "ant-design-vue": "^1.6.3",
     "axios": "^0.18.0",
     "element-ui": "^2.15.5",

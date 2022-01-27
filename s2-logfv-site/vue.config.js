@@ -12,18 +12,18 @@ module.exports = {
     config.entry = {
       [namespace]: ["./src/main.js"]
     }
-      if (process.env.NODE_ENV === 'production') {
-          config.optimization.runtimeChunk = false
-          config.optimization.splitChunks = {
-              chunks: 'all',
-              maxSize: 102400,
-              maxAsyncRequests: 5,
-              maxInitialRequests: 3,
-              cacheGroups: {
-                  default: false
-              }
-          }
-      }
+      // if (process.env.NODE_ENV === 'production') {
+      //     config.optimization.runtimeChunk = false
+      //     config.optimization.splitChunks = {
+      //         chunks: 'all',
+      //         maxSize: 102400,
+      //         maxAsyncRequests: 5,
+      //         maxInitialRequests: 3,
+      //         cacheGroups: {
+      //             default: false
+      //         }
+      //     }
+      // }
     return {
       output: {
         library: namespace,
