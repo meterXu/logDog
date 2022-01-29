@@ -1,4 +1,4 @@
-def cover = true //相同版本是否覆盖
+def cover = false //相同版本是否覆盖
 def rootPath = "./webSDK/src/packages/logfv-web"
 def tgzName = "logfv-web"
 def gitUrl = "http://192.168.126.25/git/cbb/logfv.git"
