@@ -5,6 +5,10 @@ def gitUrl = "http://192.168.126.25/git/cbb/logfv.git"
 def branch = "master"
 def credentialsId = "c078ac92-89dd-4842-8292-5e348e68db08"
 def npm = "http://192.168.126.25/npm"
+def remoteHost = "192.168.126.25"
+def remoteUser = "root"
+def remotePwd = "kjjsyf#0512"
+def robot = "360ac2ce-efe5-4478-8703-7cd3bd463044"
 def versionLocal
 def packageName
 def publish = true
@@ -37,9 +41,9 @@ pipeline {
                         stage ('删除服务器中的包') {
                                def remote = [:]
                                remote.name = 'remote'
-                               remote.host ='192.168.126.25'
-                               remote.user = 'root'
-                               remote.password ='kjjsyf#0512'
+                               remote.host = remoteHost
+                               remote.user = remoteUser
+                               remote.password = remotePwd
                                remote.allowAnyHosts= true
                                sshCommand remote: remote,command: "rm -rf '/root/.config/verdaccio/storage/${packageName}/${tgzName}-${versionLocal}.tgz'"
 
@@ -61,7 +65,7 @@ pipeline {
         success {
             script {
                 if(publish){
-                    dingtalk(robot: '360ac2ce-efe5-4478-8703-7cd3bd463044',
+                    dingtalk(robot: robot,
                                 type: 'ACTION_CARD',
                                 at: [],
                                 atAll: false,
@@ -91,7 +95,7 @@ pipeline {
         failure {
             script {
                 if(publish){
-                    dingtalk(robot: '360ac2ce-efe5-4478-8703-7cd3bd463044',
+                    dingtalk(robot: robot,
                                 type: 'ACTION_CARD',
                                 at: [],
                                 atAll: false,
