@@ -15,8 +15,8 @@ cd .. \
 && cd ../
 docker stop logfv-app
 docker rm logfv-app
-docker rmi logfv:latest
-docker build -t logfv:latest . \
+docker rmi logfv:v1
+docker build -t logfv:v1 . \
 && rm -rf logfv \
 && rm -rf logfv-server \
 && rm -rf logfv-server.war
