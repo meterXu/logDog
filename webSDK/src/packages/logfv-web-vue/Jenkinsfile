@@ -36,7 +36,7 @@ pipeline {
                         sh "npm unpublish $packageName@$versionLocal --force --registry='$npm'"
                         stage ('删除服务器中的包') {
                                def remote = [:]
-                               remote.name = '25'
+                               remote.name = 'remote'
                                remote.host ='192.168.126.25'
                                remote.user = 'root'
                                remote.password ='kjjsyf#0512'

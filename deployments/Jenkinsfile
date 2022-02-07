@@ -1,38 +1,63 @@
+def rootPath  = "./deployments"
+def shellPath  = "./build.sh"
+def gitUrl = "http://192.168.126.25/git/cbb/logfv.git"
+def branch = "master"
+def credentialsId = "c078ac92-89dd-4842-8292-5e348e68db08"
+def repositories = "192.168.126.19:85/logfv/"
+def auth = "admin:Sipsd@123"
+def tag = "logfv:latest"
+def deleteUrl = "http://192.168.126.19:85/api/repositories/logfv/logfv/tags/latest"
+def remoteHost="192.168.126.16"
+def remoteUser="root"
+def remotePwd="kjjsyf#1314"
+def containerName = "logfv-app"
+def dockerCompose = '/home/soft/logfv.yml'
 pipeline {
     agent any
     stages {
         stage('拉取代码') {
             steps {
-                git branch: 'master', credentialsId: 'c078ac92-89dd-4842-8292-5e348e68db08', url: 'http://192.168.126.25/git/cbb/logfv.git'
+                git branch: "$branch", credentialsId: "$credentialsId", url: "$gitUrl"
             }
         }
         stage('镜像构建'){
             steps {
-                sh "cd ./deployments && chmod a+x ./build.sh && sh ./build.sh"
+                script {
+                    sh "cd $rootPath && chmod a+x $shellPath && sh $shellPath"
+                }
             }
         }
         stage('镜像推送到远程仓库'){
             steps {
-                    echo "删除远程logfv:latest镜像"
-                    sh "curl --user admin:Sipsd@123  -X DELETE http://192.168.126.19:85/api/repositories/logfv/logfv/tags/latest"
-                    echo "推送镜像到远程仓库"
-                    sh "docker tag logfv:latest 192.168.126.19:85/logfv/logfv:latest"
-                    sh "docker push 192.168.126.19:85/logfv/logfv:latest"
-                    echo "删除本地logfv:latest镜像"
-                    sh "docker rmi 192.168.126.19:85/logfv/logfv:latest"
+                script {
+                        echo "删除远程$tag镜像"
+                        sh "curl --user $auth  -X DELETE $deleteUrl"
+                        echo "推送镜像到远程仓库"
+                        sh "docker tag $tag $repositories$tag"
+                        sh "docker push $repositories$tag"
+                        echo "删除本地$tag镜像"
+                        sh "docker rmi $repositories$tag"
+                    }
                 }
         }
         stage('远程启动容器') {
              steps {
                  script
                     {
-                        sh """ssh -tt root@192.168.126.16 << EOF
-                            docker stop logfv-app
-                            docker rm logfv-app
-                            docker rmi 192.168.126.19:85/logfv/logfv:latest
-                            docker-compose -f /home/soft/logfv.yml up -d
-                            exit
-                            EOF"""
+                        stage ('启动容器') {
+                               def remote = [:]
+                               remote.name = 'remote'
+                               remote.host ='192.168.126.16'
+                               remote.user = 'root'
+                               remote.password ='kjjsyf#1314'
+                               remote.allowAnyHosts= true
+                               sshCommand remote: remote,command: "docker stop logfv-app \
+                               docker rm logfv-app \
+                               docker rmi 192.168.126.19:85/logfv/logfv:latest \
+                               docker-compose -f /home/soft/logfv.yml up -d
+                               "
+
+                        }
                     }
 
              }
@@ -44,9 +69,9 @@ pipeline {
             type: 'ACTION_CARD',
             at: [],
             atAll: false,
-            title: '沃壤前端日志系统',
+            title: '沃壤前端日志工具',
             text: [
-            "* 项目名称：沃壤赋能平台前端日志系统",
+            "* 项目名称：沃壤赋能平台前端日志工具",
             "* 任务：#${BUILD_NUMBER}",
             "* 状态：<font color=#00EE00 >成功</font>",
             "* 持续时间：${currentBuild.durationString}".split("and counting")[0],
@@ -65,9 +90,9 @@ pipeline {
             type: 'ACTION_CARD',
             at: [],
             atAll: false,
-            title: '沃壤前端日志系统',
+            title: '沃壤前端日志工具',
             text: [
-            "* 项目名称：沃壤赋能平台前端日志系统",
+            "* 项目名称：沃壤赋能平台前端日志工具",
             "* 任务：#${BUILD_NUMBER}",
             "* 状态：<font color=#EE0000 >失败</font>",
             "* 持续时间：${currentBuild.durationString}".split("and counting")[0],
