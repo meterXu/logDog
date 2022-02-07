@@ -6,8 +6,8 @@ def branch = "master" //git分支
 def credentialsId = "c078ac92-89dd-4842-8292-5e348e68db08" //git认证id
 def repositories = "192.168.126.19:85/logfv/" //镜像仓库地址
 def auth = "admin:Sipsd@123" //镜像仓库认证信息
-def tag = "logfv:v1" //镜像标签
-def deleteUrl = "http://192.168.126.19:85/api/repositories/logfv/logfv/tags/v1" //镜像删除接口地址
+def tag = "logfv:latest" //镜像标签
+def deleteUrl = "http://192.168.126.19:85/api/repositories/logfv/logfv/tags/latest" //镜像删除接口地址
 def remoteHost="192.168.126.16" //容器所在服务器地址
 def remoteUser="root" //容器所在服务器用户名
 def remotePwd="kjjsyf#1314" //容器所在服务器密码
@@ -53,7 +53,6 @@ pipeline {
                                remote.user = remoteUser
                                remote.password = remotePwd
                                remote.allowAnyHosts= true
-                               sshCommand remote: remote,command: "docker pull $repositories$tag"
                                sshCommand remote: remote,command: "docker stop $containerName"
                                sshCommand remote: remote,command: "docker rm $containerName"
                                sshCommand remote: remote,command: "docker rmi $repositories$tag"
