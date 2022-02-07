@@ -1,5 +1,6 @@
 def rootPath  = "./deployments"
 def shellPath  = "./build.sh"
+def projectName = "沃壤前端日志工具"
 def gitUrl = "http://192.168.126.25/git/cbb/logfv.git"
 def branch = "master"
 def credentialsId = "c078ac92-89dd-4842-8292-5e348e68db08"
@@ -68,11 +69,11 @@ pipeline {
             type: 'ACTION_CARD',
             at: [],
             atAll: false,
-            title: '沃壤前端日志工具',
+            title: '',
             text: [
-            "* 项目名称：沃壤赋能平台前端日志工具",
             "* 任务：#${BUILD_NUMBER}",
-            "* 状态：<font color=#00EE00 >成功</font>",
+            "* 项目名称：${projectName}",
+            "* 状态：<font color=#00EE00 >部署成功</font>",
             "* 持续时间：${currentBuild.durationString}".split("and counting")[0],
             "* 执行人：${currentBuild.buildCauses.shortDescription}",
             ],
@@ -89,11 +90,11 @@ pipeline {
             type: 'ACTION_CARD',
             at: [],
             atAll: false,
-            title: '沃壤前端日志工具',
+            title: '',
             text: [
-            "* 项目名称：沃壤赋能平台前端日志工具",
             "* 任务：#${BUILD_NUMBER}",
-            "* 状态：<font color=#EE0000 >失败</font>",
+            "* 项目名称：${projectName}",
+            "* 状态：<font color=#EE0000 >部署失败</font>",
             "* 持续时间：${currentBuild.durationString}".split("and counting")[0],
             "* 执行人：${currentBuild.buildCauses.shortDescription}",
             ],
