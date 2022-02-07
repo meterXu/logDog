@@ -48,9 +48,9 @@ pipeline {
                         stage ('启动容器') {
                                def remote = [:]
                                remote.name = 'remote'
-                               remote.host ='${remoteHost}'
-                               remote.user = '${remoteUser}'
-                               remote.password ='${remotePwd}'
+                               remote.host = remoteHost
+                               remote.user = remoteUser
+                               remote.password = remotePwd
                                remote.allowAnyHosts= true
                                sshCommand remote: remote,command: "docker stop $containerName"
                                sshCommand remote: remote,command: "docker rm $containerName"
