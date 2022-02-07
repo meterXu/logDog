@@ -62,47 +62,47 @@ pipeline {
              }
         }
     }
-//     post {
-//         success {
-//             dingtalk(robot: '360ac2ce-efe5-4478-8703-7cd3bd463044',
-//             type: 'ACTION_CARD',
-//             at: [],
-//             atAll: false,
-//             title: '沃壤前端日志工具',
-//             text: [
-//             "* 项目名称：沃壤赋能平台前端日志工具",
-//             "* 任务：#${BUILD_NUMBER}",
-//             "* 状态：<font color=#00EE00 >成功</font>",
-//             "* 持续时间：${currentBuild.durationString}".split("and counting")[0],
-//             "* 执行人：${currentBuild.buildCauses.shortDescription}",
-//             ],
-//             messageUrl: '',
-//             picUrl: '',
-//             singleTitle: '',
-//             btns: [],
-//             btnLayout: 'H',
-//             hideAvatar: false
-//             )
-//         }
-//         failure {
-//             dingtalk(robot: '360ac2ce-efe5-4478-8703-7cd3bd463044',
-//             type: 'ACTION_CARD',
-//             at: [],
-//             atAll: false,
-//             title: '沃壤前端日志工具',
-//             text: [
-//             "* 项目名称：沃壤赋能平台前端日志工具",
-//             "* 任务：#${BUILD_NUMBER}",
-//             "* 状态：<font color=#EE0000 >失败</font>",
-//             "* 持续时间：${currentBuild.durationString}".split("and counting")[0],
-//             "* 执行人：${currentBuild.buildCauses.shortDescription}",
-//             ],
-//             messageUrl: '',
-//             picUrl: '',
-//             singleTitle: '',
-//             btnLayout: 'H',
-//             hideAvatar: false
-//             )
-//         }
-//     }
+    post {
+        success {
+            dingtalk(robot: robot,
+            type: 'ACTION_CARD',
+            at: [],
+            atAll: false,
+            title: '沃壤前端日志工具',
+            text: [
+            "* 项目名称：沃壤赋能平台前端日志工具",
+            "* 任务：#${BUILD_NUMBER}",
+            "* 状态：<font color=#00EE00 >成功</font>",
+            "* 持续时间：${currentBuild.durationString}".split("and counting")[0],
+            "* 执行人：${currentBuild.buildCauses.shortDescription}",
+            ],
+            messageUrl: '',
+            picUrl: '',
+            singleTitle: '',
+            btns: [],
+            btnLayout: 'H',
+            hideAvatar: false
+            )
+        }
+        failure {
+            dingtalk(robot: robot,
+            type: 'ACTION_CARD',
+            at: [],
+            atAll: false,
+            title: '沃壤前端日志工具',
+            text: [
+            "* 项目名称：沃壤赋能平台前端日志工具",
+            "* 任务：#${BUILD_NUMBER}",
+            "* 状态：<font color=#EE0000 >失败</font>",
+            "* 持续时间：${currentBuild.durationString}".split("and counting")[0],
+            "* 执行人：${currentBuild.buildCauses.shortDescription}",
+            ],
+            messageUrl: '',
+            picUrl: '',
+            singleTitle: '',
+            btnLayout: 'H',
+            hideAvatar: false
+            )
+        }
+    }
 }
