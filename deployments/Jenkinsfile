@@ -52,8 +52,8 @@ pipeline {
                                remote.password ='kjjsyf#1314'
                                remote.allowAnyHosts= true
                                sshCommand remote: remote,command: "docker stop logfv-app"
-                               sshCommand remote: remote,command: "docker rm logfv-app",
-                               sshCommand remote: remote,command: "docker rmi 192.168.126.19:85/logfv/logfv:latest",
+                               sshCommand remote: remote,command: "docker rm logfv-app"
+                               sshCommand remote: remote,command: "docker rmi 192.168.126.19:85/logfv/logfv:latest"
                                sshCommand remote: remote,command: "docker-compose -f /home/soft/logfv.yml up -d"
                         }
                     }
