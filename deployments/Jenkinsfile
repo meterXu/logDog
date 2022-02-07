@@ -11,7 +11,8 @@ def remoteHost="192.168.126.16"
 def remoteUser="root"
 def remotePwd="kjjsyf#1314"
 def containerName = "logfv-app"
-def dockerCompose = '/home/soft/logfv.yml'
+def dockerCompose = "/home/soft/logfv.yml"
+def robot = "360ac2ce-efe5-4478-8703-7cd3bd463044"
 pipeline {
     agent any
     stages {
@@ -47,14 +48,14 @@ pipeline {
                         stage ('启动容器') {
                                def remote = [:]
                                remote.name = 'remote'
-                               remote.host ='192.168.126.16'
-                               remote.user = 'root'
-                               remote.password ='kjjsyf#1314'
+                               remote.host ='$remoteHost'
+                               remote.user = '$remoteUser'
+                               remote.password ='$remotePwd'
                                remote.allowAnyHosts= true
-                               sshCommand remote: remote,command: "docker stop logfv-app"
-                               sshCommand remote: remote,command: "docker rm logfv-app"
-                               sshCommand remote: remote,command: "docker rmi 192.168.126.19:85/logfv/logfv:latest"
-                               sshCommand remote: remote,command: "docker-compose -f /home/soft/logfv.yml up -d"
+                               sshCommand remote: remote,command: "docker stop $containerName"
+                               sshCommand remote: remote,command: "docker rm $containerName"
+                               sshCommand remote: remote,command: "docker rmi $repositories$tag"
+                               sshCommand remote: remote,command: "docker-compose -f $dockerCompose up -d"
                         }
                     }
 
