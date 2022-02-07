@@ -53,6 +53,7 @@ pipeline {
                                remote.user = remoteUser
                                remote.password = remotePwd
                                remote.allowAnyHosts= true
+                               sshCommand remote: remote,command: "docker pull $repositories$tag"
                                sshCommand remote: remote,command: "docker stop $containerName"
                                sshCommand remote: remote,command: "docker rm $containerName"
                                sshCommand remote: remote,command: "docker rmi $repositories$tag"
