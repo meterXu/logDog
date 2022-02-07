@@ -72,7 +72,7 @@ pipeline {
             title: '',
             text: [
             "* 任务：#${BUILD_NUMBER}",
-            "* 项目名称：${projectName}",
+            "* 项目：${projectName}",
             "* 状态：<font color=#00EE00 >部署成功</font>",
             "* 持续时间：${currentBuild.durationString}".split("and counting")[0],
             "* 执行人：${currentBuild.buildCauses.shortDescription}",
@@ -93,7 +93,7 @@ pipeline {
             title: '',
             text: [
             "* 任务：#${BUILD_NUMBER}",
-            "* 项目名称：${projectName}",
+            "* 项目：${projectName}",
             "* 状态：<font color=#EE0000 >部署失败</font>",
             "* 持续时间：${currentBuild.durationString}".split("and counting")[0],
             "* 执行人：${currentBuild.buildCauses.shortDescription}",
