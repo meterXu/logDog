@@ -28,7 +28,7 @@ create schema logfv collate utf8_general_ci;
 logfv-server\WEB-INF\classes\db.properties.production
 ```
 **管理工具后端**
-1. 拷贝dpark-dataway至服务器
+1. 拷贝dataway至服务器
 2. 修改数据库配置
 ```
 dataway\config\application-prod.yml
@@ -157,7 +157,7 @@ Vue.use(vueLogFv,{
 // 组件中使用
 this.$logfv.info('helloWorld')
 ```
-详见 [前端日志组件](./webSDK)
+详见 [前端日志组件](http://58.210.9.133/iplatform/npm/-/web/detail/@dpark/logfv-web-vue)
 
 ## 六、使用的技术
 * javascript
