@@ -63,7 +63,7 @@ systemctl restart docker
 ```
 ### 3. 启动容器
 ```bash=
-docker run -d -p 9999:8080 -p 9191:9191 -e DB_HOST=<dbhost> -e DB_NAME=<dbname> -e DB_PASSWD=<password> -e BASE_API=<baseapi> 192.168.126.19:85/logfv/logfv:v1
+docker run -d -p 9999:8080 -p 9191:9191 -e DB_HOST=<dbhost> -e DB_NAME=<dbname> -e DB_PASSWD=<password> -e BASE_API=<baseapi> 192.168.126.19:85/logfv/logfv:latest
 # 以下参数替换
 # <dbhost> 
 # <dbname>
@@ -158,6 +158,50 @@ Vue.use(vueLogFv,{
 this.$logfv.info('helloWorld')
 ```
 详见 [前端日志组件](http://58.210.9.133/iplatform/npm/-/web/detail/@dpark/logfv-web-vue)
+
+### 后端项目
+
+**URL**
+
+```
+http://<ip>:8080/logfv-server/logfv/web/save
+```
+
+**Method**
+
+```
+POST
+```
+
+**请求body**
+
+类型：application/json
+
+```json
+{
+  "logDate":1644478415932,
+  "type": "info",
+  "appId": "demo",
+  "appName": "demo系统",
+  "content": "这是后端接口日志",
+  "environment":"jdk 1.8",
+  "info":"controller:/demo/test",
+  "source": "api"
+}
+```
+
+其中logDate,type,appId,appName,content必填
+
+**返回body**
+
+```json
+{
+    "code": 200,
+    "success": true,
+    "msg": null,
+    "data": true
+}
+```
 
 ## 六、使用的技术
 * javascript

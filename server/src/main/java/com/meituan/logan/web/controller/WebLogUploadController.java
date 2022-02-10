@@ -1,7 +1,9 @@
 package com.meituan.logan.web.controller;
+import com.meituan.logan.web.model.TableModel;
 import com.meituan.logan.web.service.BatchInsertService;
 import com.meituan.logan.web.dto.WebLogDetailDTO;
 import com.meituan.logan.web.model.WebLogTaskModel;
+import com.meituan.logan.web.model.WebLogSaveModel;
 import com.meituan.logan.web.model.response.LoganResponse;
 import com.meituan.logan.web.parser.WebLogParser;
 import com.meituan.logan.web.service.WebTaskService;
@@ -48,6 +50,33 @@ public class WebLogUploadController {
         }else{
             List<WebLogDetailDTO> detailDTOS = WebLogParser.parseWebLogDetail(
                     taskModel.getContent(), taskId);
+            batchInsertService.saveLogDetails(detailDTOS);
+            return LoganResponse.success(true);
+
+        }
+    }
+
+    @PostMapping("/save")
+    @ResponseBody
+    public LoganResponse<Boolean> saveWebLog(@RequestBody WebLogSaveModel saveModel) {
+        if (saveModel == null || !saveModel.isValid()) {
+            return LoganResponse.badParam("无效的参数");
+        }
+        WebLogSaveModel transformSaveModel = saveModel.transformToDto();
+        WebLogTaskModel taskModel = new WebLogTaskModel();
+        taskModel.setDeviceId(transformSaveModel.getAppId());
+        taskModel.setAppName(transformSaveModel.getAppName());
+        taskModel.setLogPageNo(0);
+        taskModel.setLogDate(transformSaveModel.getLogDate());
+        taskModel.setContent(transformSaveModel.getContent());
+        Long taskId = webTaskService.saveTask(taskModel);
+        if (taskId==null) {
+            return LoganResponse.exception("日志任务为空！");
+        }else if(taskId==0){
+            return LoganResponse.exception("日志任务Id为0！");
+        }else{
+            List<WebLogDetailDTO> detailDTOS = WebLogParser.parseWebLogDetail(
+                    transformSaveModel.getContent(), taskId);
             batchInsertService.saveLogDetails(detailDTOS);
             return LoganResponse.success(true);
 

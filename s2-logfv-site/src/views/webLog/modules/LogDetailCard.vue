@@ -51,7 +51,7 @@ export default {
     return {
       titleByKey: {
         "id": "日志编号",
-        "task_id": "系统编号",
+        "task_id": "分片编号",
         "log_type": "日志类型",
         "canReadTime": "日志记录时间",
         "web_source": "日志来源",
