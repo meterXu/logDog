@@ -179,7 +179,7 @@ POST
 
 ```json
 {
-  "logDate":1644478415932,
+  "logTime":1644478415932,
   "type": "info",
   "appId": "demo",
   "appName": "demo系统",
@@ -190,7 +190,7 @@ POST
 }
 ```
 
-其中logDate,type,appId,appName,content必填
+其中 logTime,type,appId,appName,content必填
 
 **返回body**
 
