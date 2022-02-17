@@ -21,6 +21,11 @@ npm i @dpark/logfv-web --registry http://58.210.9.133/iplatform/npm/
 yarn add @dpark/logfv-web --registry http://58.210.9.133/iplatform/npm/
 ```
 
+或
+```bash=
+<script type="text/javascript" src="http://58.210.9.133/iplatform/files/logfv-web/index.min.js"></script>
+```
+
 ## 3. 初始化
 
 **initConfig(globalConfig)**
