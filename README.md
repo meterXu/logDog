@@ -128,6 +128,11 @@ networks:
 ```bash
 yarn add @dpark/logfv-web --registry http://58.210.9.133/iplatform/npm/
 ```
+或
+```bash=
+<script type="text/javascript" src="http://58.210.9.133/iplatform/files/logfv-web/index.min.js"></script>
+```
+
 2. 在项目中记录日志
 ```javascript
 import Logfv from '@dpark/logfv-web';
