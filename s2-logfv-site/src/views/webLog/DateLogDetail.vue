@@ -152,7 +152,7 @@ export default {
 
 <style scoped>
 .content_container{
-  height: calc(100% - 96px);
+  height: 630px;
   width: 100%;
   display: flex;
   flex: 1;
