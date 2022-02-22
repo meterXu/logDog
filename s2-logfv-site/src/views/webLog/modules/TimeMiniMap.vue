@@ -271,6 +271,11 @@ export default {
 
 <style scoped>
 .timeMiniMap{
+  position: absolute;
+  left: 0;
+  width: 50px;
+  top: 0;
+  bottom: 0;
 }
 #timeline-container{
   width: 50px;

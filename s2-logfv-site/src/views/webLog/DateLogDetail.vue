@@ -172,8 +172,6 @@ export default {
 .content{
   height: 100%;
   width: 100%;
-  display: flex;
-  flex: 1;
   position: relative;
 }
 .noData{
