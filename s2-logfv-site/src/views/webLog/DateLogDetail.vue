@@ -1,5 +1,5 @@
 <template>
-  <a-card :bordered="false" style="height: 100%" :bodyStyle="{height:'100%',display:'flex',flex:1,'flex-direction':'column','padding-bottom':0}">
+  <a-card :bordered="false" style="height: 100%" :bodyStyle="{height:'100%',overflow: 'hidden'}">
     <div class="ant-alert ant-alert-info" style="margin-bottom: 16px;">
       <a style="margin-left: 0px">{{deviceName}}：{{date}}</a>
     </div>
@@ -152,7 +152,7 @@ export default {
 
 <style scoped>
 .content_container{
-  height: 100%;
+  height: calc(100% - 96px);
   width: 100%;
   display: flex;
   flex: 1;

@@ -85,6 +85,7 @@ const project_logfvSite = {
       }
     },
     "browserFilter": {
+      "enable":false,
       "chrome": 65,
       "firefox": 53
     }
