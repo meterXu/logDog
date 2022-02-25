@@ -17,7 +17,7 @@ const project_logfvSite = {
     production: {
       ssoApi: "<请配置>",
       baseApi: "BASE_API/dataway-api/api",
-      tokenKey:'X-Access-Token',
+      tokenKey:'Authorization',
       accessTokenTime: 3600 * 1000,
       logfv:{
         enable:false,
