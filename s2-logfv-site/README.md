@@ -16,6 +16,13 @@ npm run pre
 * 配置文件：`src\project.js`
 * 路由：`src\views\index.js`
 
+* 过滤显示日志类型
+
+```js=
+// project.js
+typesFilter:["info","error","other"],
+```
+
 ### 运行
 * 开发模式
 ```

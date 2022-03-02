@@ -1,3 +1,5 @@
+import _project from "../project";
+import {portal} from '@dpark/s2-utils'
 export const webLogType ={
     action:"action",
     page:"page",
@@ -8,7 +10,8 @@ export const webLogType ={
     debug:"debug",
     error:"error"
 }
-export const webLogTypeConfigs = [
+
+let logtypes  = [
     {
         logType: webLogType.action,
         logTypeName: "操作日志",
@@ -64,6 +67,11 @@ export const webLogTypeConfigs = [
         gradualColor: "#a6e5ff"
     },
 ];
+let typesFilter = portal.getProject(_project).variable.typesFilter
+if(typesFilter){
+    logtypes = logtypes.filter(c=>typesFilter.indexOf(c.logType)>-1)
+}
+export const webLogTypeConfigs = logtypes
 
 export function getNoValue(value,noValue){
     return value||noValue

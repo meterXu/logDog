@@ -48,7 +48,7 @@ export default {
   computed:{
     realSource(){
        if(this.source){
-         return this.source.map(c=>{
+         let xx = this.source.filter(c=>getDisplay(c.log_type)).map(c=>{
            if(c.id === this.focusLogId){
              c.backgroundColor = '#e6f7ff'
            }else{
@@ -62,6 +62,7 @@ export default {
            }
            return c
          })
+         return  xx;
        }else {
          return []
        }

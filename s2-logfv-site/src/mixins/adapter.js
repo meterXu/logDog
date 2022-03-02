@@ -6,17 +6,19 @@ export const convertToMinimap = (data, type) => {
     webLogTypes.pop()
     for (let d of data) {
         let logType = getDisplay(d.log_type)
-        ret.push({
-            id: d.id,
-            time: d.log_time,
-            logType: {
-                type: logType.logType,
-                logTypeName: logType.logTypeName,
-                displayColor: logType.displayColor
+        if(logType){
+            ret.push({
+                id: d.id,
+                time: d.log_time,
+                logType: {
+                    type: logType.logType,
+                    logTypeName: logType.logTypeName,
+                    displayColor: logType.displayColor
+                }
+            })
+            if(!webLogTypes.find(c=>c.logType===logType.logType)){
+                webLogTypes.push(logType)
             }
-        })
-        if(!webLogTypes.find(c=>c.logType===logType.logType)){
-            webLogTypes.push(logType)
         }
     }
     return {ret,webLogTypes};
@@ -24,12 +26,18 @@ export const convertToMinimap = (data, type) => {
 export const getDisplay=function (type){
     if(Object.keys(webLogType).find(c=>c===type)){
         let ss =  webLogTypeConfigs.find(c => c.logType === type);
-        return Object.assign({},ss)
-    }else{
+        if(ss){
+            return Object.assign({},ss)
+        }else{
+            return null
+        }
+    }else if(webLogTypeConfigs.find(c=>c.logType==='other')){
         let ss= webLogTypeConfigs.find(c => c.logType === customer);
         ss = Object.assign({},ss)
         ss.logType=type
         ss.logTypeName=type
         return ss;
+    }else{
+        return null
     }
 }
