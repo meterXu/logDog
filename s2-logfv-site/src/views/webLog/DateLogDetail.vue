@@ -92,7 +92,13 @@ export default {
   },
   methods:{
     getDataLogIndexData(params){
-      params = Object.assign(params,{
+      params = Object.assign({
+        content:"",
+        logType:"",
+        logOrder:"",
+        startTime:"",
+        endTime:"",
+      },params||{},{
         deviceId:this.deviceId,
         logDate:this.logDate
       },{

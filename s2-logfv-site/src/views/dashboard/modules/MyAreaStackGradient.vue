@@ -37,8 +37,11 @@ export default {
   },
   methods:{
     drawPid() {
-      let that = this
-      let getchart = echarts.init(document.getElementById('chart'))
+      let chart = document.getElementById('chart')
+      if(!chart){
+        return
+      }
+      let getchart = echarts.init(chart)
       getchart.clear()
       let optionsColor = [];
       let legendData = [];

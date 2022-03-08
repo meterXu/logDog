@@ -15,6 +15,15 @@ export function staticPermission() {
                 }
             },
             {
+                path: '/logfvSite/webLog/index',
+                name: '@getRoutesName(path)',
+                meta: {
+                    icon:'search',
+                    title: '日志查询',
+                    keepAlive:true
+                }
+            },
+            {
                 path: '/logfvSite/calendar/index',
                 name: '@getRoutesName(path)',
                 meta: {
@@ -24,15 +33,6 @@ export function staticPermission() {
                         }
                     },
                     title: '日历视图',
-                    keepAlive:true
-                }
-            },
-            {
-                path: '/logfvSite/webLog/index',
-                name: '@getRoutesName(path)',
-                meta: {
-                    icon:'search',
-                    title: '日志查询',
                     keepAlive:true
                 }
             }

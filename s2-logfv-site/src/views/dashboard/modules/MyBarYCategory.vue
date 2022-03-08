@@ -35,7 +35,11 @@ export default {
     drawPid() {
       let yAxisData = []
       let seriesData = []
-      let getchart = echarts.init(document.getElementById('container'))
+      let container = document.getElementById('container')
+      if(!container){
+        return
+      }
+      let getchart = echarts.init(container)
       getchart.clear()
       this.dataSource.forEach(function(value){
         yAxisData.unshift(value.device_name)
