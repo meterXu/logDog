@@ -321,7 +321,8 @@ return {
     "pageInfo":pageQuery.pageInfo(),
     "pageData":pageQuery.data()
 }', '{"requestHeader":{"$schema":"http://json-schema.org/draft-04/schema#","type":"object","properties":{}},"requestBody":{"$schema":"http://json-schema.org/draft-04/schema#","type":"object","properties":{"pageSize":{"type":"number"}}},"responseHeader":{"$schema":"http://json-schema.org/draft-04/schema#","type":"object","properties":{}},"responseBody":{"$schema":"http://json-schema.org/draft-04/schema#","type":"object","properties":{"executionTime":{"type":"number"},"code":{"type":"number"},"success":{"type":"boolean"},"lifeCycleTime":{"type":"number"},"message":{"type":"string"},"value":{"type":"object","properties":{"pageInfo":{"type":"object","properties":{"recordPosition":{"type":"number"},"enable":{"type":"boolean"},"totalPage":{"type":"number"},"pageSize":{"type":"number"},"totalCount":{"type":"number"},"currentPage":{"type":"number"}}},"pageData":{"type":"array","items":{"type":"object","properties":{"date":{"type":"string"},"logType":{"type":"string"},"count":{"type":"number"}}}}}}}}}', '{"requestHeader":"[]","requestBody":"{\\"pageSize\\":1}","responseHeader":"{}","responseBody":"{\\n\\t\\"success\\":true,\\n\\t\\"message\\":\\"OK\\",\\n\\t\\"code\\":0,\\n\\t\\"lifeCycleTime\\":469,\\n\\t\\"executionTime\\":384,\\n\\t\\"value\\":{\\n\\t\\t\\"pageInfo\\":{\\n\\t\\t\\t\\"enable\\":true,\\n\\t\\t\\t\\"pageSize\\":1,\\n\\t\\t\\t\\"totalCount\\":7,\\n\\t\\t\\t\\"totalPage\\":7,\\n\\t\\t\\t\\"currentPage\\":1,\\n\\t\\t\\t\\"recordPosition\\":0\\n\\t\\t},\\n\\t\\t\\"pageData\\":[\\n\\t\\t\\t{\\n\\t\\t\\t\\t\\"date\\":\\"20211029\\",\\n\\t\\t\\t\\t\\"logType\\":\\"info\\",\\n\\t\\t\\t\\t\\"count\\":3\\n\\t\\t\\t}\\n\\t\\t]\\n\\t}\\n}"}', '{"wrapAllParameters":false,"enableCrossDomain":true,"API_BASE_URL":"/api/","ALL_MAC":"024234752F01,0050569D4242,0242A8A12CFC","resultStructure":true,"showGitButton":false,"DATAWAY_VERSION":"4.2.2.RELEASE","checkDatawayVersion":true,"CONTEXT_PATH":"/dataway-api","responseFormat":"{\\n    \\"success\\"      : \\"@resultStatus\\",\\n    \\"message\\"      : \\"@resultMessage\\",\\n    \\"code\\"         : \\"@resultCode\\",\\n    \\"lifeCycleTime\\": \\"@timeLifeCycle\\",\\n    \\"executionTime\\": \\"@timeExecution\\",\\n    \\"value\\"        : \\"@resultData\\"\\n}","wrapParameterName":"root"}', '1636609328476', '每天的日志类型数汇总');
-INSERT INTO interface_release (pub_id, pub_api_id, pub_method, pub_path, pub_status, pub_type, pub_script, pub_script_ori, pub_schema, pub_sample, pub_option, pub_release_time, pub_comment) VALUES ('r_ekk0adfd7ajle', 'i_ekcijfdd53f1k', 'GET', '/api/logfv/web/dateLogIndex', '1', 'DataQL', '// a new Query.
+
+INSERT INTO interface_release (pub_id, pub_api_id, pub_method, pub_path, pub_status, pub_type, pub_script, pub_script_ori, pub_schema, pub_sample, pub_option, pub_release_time, pub_comment) VALUES ('r_en0n4me0d-4hk', 'i_ekcijfdd53f1k', 'GET', '/api/logfv/web/dateLogIndex', '1', 'DataQL', '// a new Query.
 // SQL 执行器切换为分页模式
 hint FRAGMENT_SQL_DATA_SOURCE = "logfv"
 hint FRAGMENT_SQL_QUERY_BY_PAGE = true
@@ -334,19 +335,19 @@ var dataSet = @@mybatis(logDate,deviceId,content,logType,logOrder,startTime,endT
 <select>
 
 select b.* from web_task a left join web_detail  b on a.id = b.task_id where 1=1
- <if test="logDate != ''''">
+    <if test="logDate != ''''">
         and a.log_date = #{logDate}
-        </if>
- <if test="deviceId != ''''">
+    </if>
+    <if test="deviceId != ''''">
         and a.device_id = #{deviceId}
-        </if>
+    </if>
     <if test="content != ''''">
         and b.content like concat(''%'', #{content},''%'')
-        </if>
+    </if>
     <if test="logType != ''''">
      and b.log_type in
      <foreach collection="logType.split('','')" item="id" open="(" close=")" separator=",">
-    #{id}
+        #{id}
      </foreach>
     </if>
     <if test="content != ''''">
@@ -355,11 +356,9 @@ select b.* from web_task a left join web_detail  b on a.id = b.task_id where 1=1
     <if test="startTime != '''' and endTime != '''' ">
         and b.log_time between #{startTime} and #{endTime}
     </if>
-
     <if test="logOrder == ''''">
        order by b.log_time  asc
-        </if>
-
+    </if>
      <if test="logOrder != ''''">
        order by b.log_time desc
     </if>
@@ -389,19 +388,19 @@ var dataSet = @@mybatis(logDate,deviceId,content,logType,logOrder,startTime,endT
 <select>
 
 select b.* from web_task a left join web_detail  b on a.id = b.task_id where 1=1
- <if test="logDate != ''''">
+    <if test="logDate != ''''">
         and a.log_date = #{logDate}
-        </if>
- <if test="deviceId != ''''">
+    </if>
+    <if test="deviceId != ''''">
         and a.device_id = #{deviceId}
-        </if>
+    </if>
     <if test="content != ''''">
         and b.content like concat(''%'', #{content},''%'')
-        </if>
+    </if>
     <if test="logType != ''''">
      and b.log_type in
      <foreach collection="logType.split('','')" item="id" open="(" close=")" separator=",">
-    #{id}
+        #{id}
      </foreach>
     </if>
     <if test="content != ''''">
@@ -410,11 +409,9 @@ select b.* from web_task a left join web_detail  b on a.id = b.task_id where 1=1
     <if test="startTime != '''' and endTime != '''' ">
         and b.log_time between #{startTime} and #{endTime}
     </if>
-
     <if test="logOrder == ''''">
        order by b.log_time  asc
-        </if>
-
+    </if>
      <if test="logOrder != ''''">
        order by b.log_time desc
     </if>
@@ -431,7 +428,9 @@ run pageQuery.setPageInfo({
 return {
     "pageInfo":pageQuery.pageInfo(),
     "pageData":pageQuery.data()
-}', '{"requestHeader":{"$schema":"http://json-schema.org/draft-04/schema#","type":"object","properties":{}},"requestBody":{"$schema":"http://json-schema.org/draft-04/schema#","type":"object","properties":{"logType":{"type":"string"},"logDate":{"type":"string"},"deviceId":{"type":"string"},"content":{"type":"string"},"logOrder":{"type":"string"}}},"responseHeader":{"$schema":"http://json-schema.org/draft-04/schema#","type":"object","properties":{}},"responseBody":{"$schema":"http://json-schema.org/draft-04/schema#","type":"object","properties":{"executionTime":{"type":"number"},"code":{"type":"number"},"success":{"type":"boolean"},"lifeCycleTime":{"type":"number"},"message":{"type":"string"},"value":{"type":"object","properties":{"pageInfo":{"type":"object","properties":{"recordPosition":{"type":"number"},"enable":{"type":"boolean"},"totalPage":{"type":"number"},"pageSize":{"type":"number"},"totalCount":{"type":"number"},"currentPage":{"type":"number"}}},"pageData":{"type":"array","items":{"type":["string","boolean","number","object","array","null"]}}}}}}}', '{"requestHeader":"[]","requestBody":"{\\"logDate\\":\\"\\",\\n\\"deviceId\\":\\"\\",\\n\\"content\\":\\"\\",\\n\\"logType\\":\\"\\", \\n\\"logOrder\\":\\"2\\"}","responseHeader":"{}","responseBody":"{\\n\\t\\"success\\":true,\\n\\t\\"message\\":\\"OK\\",\\n\\t\\"code\\":0,\\n\\t\\"lifeCycleTime\\":480,\\n\\t\\"executionTime\\":392,\\n\\t\\"value\\":{\\n\\t\\t\\"pageInfo\\":{\\n\\t\\t\\t\\"enable\\":false,\\n\\t\\t\\t\\"pageSize\\":-1,\\n\\t\\t\\t\\"totalCount\\":0,\\n\\t\\t\\t\\"totalPage\\":1,\\n\\t\\t\\t\\"currentPage\\":1,\\n\\t\\t\\t\\"recordPosition\\":0\\n\\t\\t},\\n\\t\\t\\"pageData\\":[]\\n\\t}\\n}"}', '{"wrapAllParameters":false,"enableCrossDomain":true,"API_BASE_URL":"/api/","ALL_MAC":"0242AC140002","resultStructure":true,"showGitButton":false,"DATAWAY_VERSION":"4.2.2.RELEASE","checkDatawayVersion":true,"CONTEXT_PATH":"/dataway-api","responseFormat":"{\\n    \\"success\\"      : \\"@resultStatus\\",\\n    \\"message\\"      : \\"@resultMessage\\",\\n    \\"code\\"         : \\"@resultCode\\",\\n    \\"lifeCycleTime\\": \\"@timeLifeCycle\\",\\n    \\"executionTime\\": \\"@timeExecution\\",\\n    \\"value\\"        : \\"@resultData\\"\\n}","wrapParameterName":"root"}', '1636609392895', '一天日志的时间索引');
+}', '{"requestHeader":{"$schema":"http://json-schema.org/draft-04/schema#","type":"object","properties":{}},"requestBody":{"$schema":"http://json-schema.org/draft-04/schema#","type":"object","properties":{"logType":{"type":"string"},"logDate":{"type":"string"},"pageNo":{"type":"number"},"pageSize":{"type":"number"},"startTime":{"type":"string"},"endTime":{"type":"string"},"deviceId":{"type":"string"},"content":{"type":"string"},"logOrder":{"type":"string"}}},"responseHeader":{"$schema":"http://json-schema.org/draft-04/schema#","type":"object","properties":{}},"responseBody":{"$schema":"http://json-schema.org/draft-04/schema#","type":"object","properties":{"executionTime":{"type":"number"},"code":{"type":"number"},"success":{"type":"boolean"},"lifeCycleTime":{"type":"number"},"message":{"type":"string"},"value":{"type":"object","properties":{"pageInfo":{"type":"object","properties":{"recordPosition":{"type":"number"},"enable":{"type":"boolean"},"totalPage":{"type":"number"},"pageSize":{"type":"number"},"totalCount":{"type":"number"},"currentPage":{"type":"number"}}},"pageData":{"type":"array","items":{"type":"object","properties":{"minute_offset":{"type":["string","boolean","number","object","array","null"]},"custom_report_info":{"type":["string","boolean","number","object","array","null"]},"record_year":{"type":["string","boolean","number","object","array","null"]},"log_level":{"type":["string","boolean","number","object","array","null"]},"task_id":{"type":["string","boolean","number","object","array","null"]},"content":{"type":["string","boolean","number","object","array","null"]},"log_time":{"type":["string","boolean","number","object","array","null"]},"web_source":{"type":["string","boolean","number","object","array","null"]},"log_type":{"type":["string","boolean","number","object","array","null"]},"environment":{"type":["string","boolean","number","object","array","null"]},"id":{"type":["string","boolean","number","object","array","null"]},"record_month":{"type":["string","boolean","number","object","array","null"]},"record_day":{"type":["string","boolean","number","object","array","null"]},"add_time":{"type":["string","boolean","number","object","array","null"]}}}}}}}}}', '{"requestHeader":"[]","requestBody":"{\\n\\"logDate\\":\\"\\",\\n\\"deviceId\\":\\"\\",\\n\\"content\\":\\"\\",\\n\\"logType\\":\\"\\", \\n\\"logOrder\\":\\"\\",\\n\\"startTime\\":\\"\\",\\n\\"endTime\\":\\"\\",\\n\\"pageNo\\": 1,\\n\\"pageSize\\": 1\\n}","responseHeader":"{}","responseBody":"{\\n\\t\\"success\\":true,\\n\\t\\"message\\":\\"OK\\",\\n\\t\\"code\\":0,\\n\\t\\"lifeCycleTime\\":2787,\\n\\t\\"executionTime\\":2778,\\n\\t\\"value\\":{\\n\\t\\t\\"pageInfo\\":{\\n\\t\\t\\t\\"enable\\":true,\\n\\t\\t\\t\\"pageSize\\":1,\\n\\t\\t\\t\\"totalCount\\":284759,\\n\\t\\t\\t\\"totalPage\\":284759,\\n\\t\\t\\t\\"currentPage\\":1,\\n\\t\\t\\t\\"recordPosition\\":0\\n\\t\\t},\\n\\t\\t\\"pageData\\":[\\n\\t\\t\\t{\\n\\t\\t\\t}\\n\\t\\t]\\n\\t}\\n}"}', '{"wrapAllParameters":false,"enableCrossDomain":true,"API_BASE_URL":"/api/","ALL_MAC":"0242AC140002","resultStructure":true,"showGitButton":false,"DATAWAY_VERSION":"4.2.2.RELEASE","checkDatawayVersion":true,"CONTEXT_PATH":"/dataway-api","responseFormat":"{\\n    \\"success\\"      : \\"@resultStatus\\",\\n    \\"message\\"      : \\"@resultMessage\\",\\n    \\"code\\"         : \\"@resultCode\\",\\n    \\"lifeCycleTime\\": \\"@timeLifeCycle\\",\\n    \\"executionTime\\": \\"@timeExecution\\",\\n    \\"value\\"        : \\"@resultData\\"\\n}","wrapParameterName":"root"}', '1646728020877', '一天日志的时间索引');
+
+
 INSERT INTO interface_release (pub_id, pub_api_id, pub_method, pub_path, pub_status, pub_type, pub_script, pub_script_ori, pub_schema, pub_sample, pub_option, pub_release_time, pub_comment) VALUES ('r_ekk0aj519-665', 'i_eje447n2h-190', 'GET', '/api/logfv/web/querySystems', '1', 'DataQL', 'hint FRAGMENT_SQL_DATA_SOURCE = "logfv"
 var dataSet = @@sql()<%
     select   count(distinct device_id)    from web_task;
