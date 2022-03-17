@@ -13,6 +13,7 @@ def remoteUser="root" //容器所在服务器用户名
 def remotePwd="kjjsyf#1314" //容器所在服务器密码
 def containerName = "logfv-app" //容器名称
 def dockerCompose = "/home/soft/logfv.yml" //容器编排脚本路径
+def projectUrl="http://58.210.9.133/iplatform/ifp-logfv"
 def robot = "360ac2ce-efe5-4478-8703-7cd3bd463044" //钉钉机器人ID
 pipeline {
     agent any
@@ -76,6 +77,7 @@ pipeline {
             "* 状态：<font color=#00EE00 >部署成功</font>",
             "* 持续时间：${currentBuild.durationString}".split("and counting")[0],
             "* 执行人：${currentBuild.buildCauses.shortDescription}",
+            "* 地址：${projectUrl}"
             ],
             messageUrl: '',
             picUrl: '',
@@ -97,6 +99,7 @@ pipeline {
             "* 状态：<font color=#EE0000 >部署失败</font>",
             "* 持续时间：${currentBuild.durationString}".split("and counting")[0],
             "* 执行人：${currentBuild.buildCauses.shortDescription}",
+            "* 地址：${projectUrl}"
             ],
             messageUrl: '',
             picUrl: '',
