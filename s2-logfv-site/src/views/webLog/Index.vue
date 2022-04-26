@@ -137,7 +137,13 @@ export default {
           title: '日志总数',
           align: 'center',
           width: 200,
-          dataIndex: 'log_count'
+          dataIndex: 'log_count',
+          customRender: (text, record, index) => {
+            return {
+              children: text+"条",
+              attrs: {}
+            }
+          }
         }
       ],
       innerColumns: [
