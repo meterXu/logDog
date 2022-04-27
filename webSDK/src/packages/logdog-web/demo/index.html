@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .demo-item{
+            margin: 5px 0;
+        }
+        .btns button {
+            margin: 0 2px;
+        }
+    </style>
+    <script type="text/javascript" src="../dist/index.min.js"></script>
+    <script type="text/javascript">
+        this.text = "hello logfv"
+        this.logfv = new LogFv({
+            reportUrl: "http://192.168.253.128:9999/logfv-server/logfv/web/upload",
+            appId: `test-logfv-web`,
+            appName: '测试系统1',
+            console: true,
+            enable: true
+        })
+        function info() {
+            this.logfv.info(this.text)
+        }
+        function warn() {
+            this.logfv.warn(this.text)
+        }
+        function debug() {
+            this.logfv.debug(this.text)
+        }
+        function error() {
+            this.logfv.error(this.text)
+        }
+        function log() {
+            this.logfv.log(this.text,'custom-type')
+        }
+        function infoWithEncryption() {
+            this.logfv.infoWithEncryption(this.text)
+        }
+        function warnWithEncryption() {
+            this.logfv.warnWithEncryption(this.text)
+        }
+        function errorWithEncryption() {
+            this.logfv.errorWithEncryption(this.text)
+        }
+        function debugWithEncryption() {
+            this.logfv.debugWithEncryption(this.text)
+        }
+        function logWithEncryption() {
+            this.logfv.logWithEncryption(this.text,'custom-encryption-type')
+        }
+    </script>
+</head>
+<body>
+<div>
+    <h1>Demo</h1>
+    <div>
+        <div class="demo-item">
+        </div>
+        <div class="demo-item btns">
+            <button onclick="info()">info</button>
+            <button onclick="warn()">warn</button>
+            <button onclick="debug()">debug</button>
+            <button onclick="error()">error</button>
+            <button onclick="log()">log</button>
+        </div>
+        <div class="demo-item btns">
+            <button onclick="infoWithEncryption()">infoWithEncryption</button>
+            <button onclick="warnWithEncryption()">warnWithEncryption</button>
+            <button onclick="debugWithEncryption()">debugWithEncryption</button>
+            <button onclick="errorWithEncryption()">errorWithEncryption</button>
+            <button onclick="logWithEncryption()">logWithEncryption</button>
+        </div>
+        <div class="demo-item btns">
+            <button onclick="autolog()">autolog</button>
+        </div>
+        <div class="demo-item btns">
+            <button onclick="generateError()">onerror</button>
+        </div>
+        <div class="demo-item btns">
+            <button onclick="getUserList()">axios</button>
+        </div>
+        <div class="demo-item">
+            <button onclick="report">report</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,125 @@
+def cover = false //相同版本是否覆盖
+def rootPath = "./webSDK/src/packages/logfv-web-vue"
+def tgzName = "logfv-web-vue"
+def gitUrl = "http://192.168.126.25/git/cbb/logfv.git"
+def branch = "master"
+def credentialsId = "c078ac92-89dd-4842-8292-5e348e68db08"
+def npm = "http://192.168.126.25/npm"
+def remoteHost = "192.168.126.25"
+def remoteUser = "root"
+def remotePwd = "kjjsyf#0512"
+def robot = "360ac2ce-efe5-4478-8703-7cd3bd463044"
+def versionLocal
+def packageName
+def publish = true
+pipeline {
+    agent any
+    stages {
+        stage('拉取代码') {
+            steps {
+                git branch: "$branch", credentialsId: "$credentialsId", url: "$gitUrl"
+            }
+        }
+        stage('项目构建'){
+            steps {
+                script{
+                    versionLocal = sh(script: "node -p 'let path=\"$rootPath\";require(path+\"/package.json\").version'", returnStdout: true).trim()
+                    packageName = sh(script: "node -p 'let path=\"$rootPath\";require(path+\"/package.json\").name'", returnStdout: true).trim()
+                    sh "cd $rootPath && yarn install && npm run build"
+                }
+            }
+        }
+        stage('发布npm包'){
+            steps {
+                script {
+                    echo "获取包的本地版本和线上版本"
+                    def versionOnline =  sh(script: "npm view $packageName version --registry='$npm'", returnStdout: true).trim()
+                    if ("$versionOnline" == "$versionLocal" && cover){
+                        echo "版本相同则撤销线上版本"
+                        publish = true
+                        sh "npm unpublish $packageName@$versionLocal --force --registry='$npm'"
+                        stage ('删除服务器中的包') {
+                               def remote = [:]
+                               remote.name = 'remote'
+                               remote.host = remoteHost
+                               remote.user = remoteUser
+                               remote.password = remotePwd
+                               remote.allowAnyHosts= true
+                               sshCommand remote: remote,command: "rm -rf '/root/.config/verdaccio/storage/${packageName}/${tgzName}-${versionLocal}.tgz'"
+
+                        }
+                        echo "发布新版本"
+                        sh "cd $rootPath && npm publish --registry='$npm'"
+                    }else if ("$versionOnline" != "$versionLocal"){
+                        echo "发布新版本"
+                        publish = true
+                        sh "cd $rootPath && npm publish --registry='$npm'"
+                    }else{
+                        publish = false
+                    }
+                }
+          }
+        }
+    }
+    post {
+        success {
+            script {
+                if(publish){
+                    dingtalk(robot: robot,
+                                type: 'ACTION_CARD',
+                                at: [],
+                                atAll: false,
+                                title: "",
+                                text: [
+                                "<font color=#0089ff >${packageName}组件发版</font>",
+                                "",
+                                "----",
+                                "",
+                                "* 任务：#${BUILD_NUMBER}",
+                                "* 组件：${packageName}",
+                                "* 版本：${versionLocal}",
+                                "* 状态：<font color=#00EE00 >发版成功</font>",
+                                "* 持续时间：${currentBuild.durationString}".split("and counting")[0],
+                                "* 执行人：${currentBuild.buildCauses.shortDescription}",
+                                ],
+                                messageUrl: '',
+                                picUrl: '',
+                                singleTitle: '',
+                                btns: [],
+                                btnLayout: 'H',
+                                hideAvatar: false
+                                )
+                }
+            }
+        }
+        failure {
+            script {
+                if(publish){
+                    dingtalk(robot: robot,
+                                type: 'ACTION_CARD',
+                                at: [],
+                                atAll: false,
+                                title: "",
+                                text: [
+                                "<font color=#0089ff >${packageName}组件发版</font>",
+                                "",
+                                "----",
+                                "",
+                                "* 任务：#${BUILD_NUMBER}",
+                                "* 组件：${packageName}",
+                                "* 版本：${versionLocal}",
+                                "* 状态：<font color=#EE0000 >发版失败</font>",
+                                "* 持续时间：${currentBuild.durationString}".split("and counting")[0],
+                                "* 执行人：${currentBuild.buildCauses.shortDescription}",
+                                ],
+                                messageUrl: '',
+                                picUrl: '',
+                                singleTitle: '',
+                                btnLayout: 'H',
+                                hideAvatar: false
+                                )
+                }
+            }
+        }
+    }
+}
