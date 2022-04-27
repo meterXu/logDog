@@ -1,7 +1,0 @@
-!dist
-!README.md
-index.js
-src
-babel.config.js
-yarn.lock
-vue.config.js
