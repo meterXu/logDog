@@ -42,7 +42,13 @@ export default {
         {
           title: '日志数',
           align: 'center',
-          dataIndex: 'log_count'
+          dataIndex: 'log_count',
+          customRender: (text, record, index) => {
+            return {
+              children: text+'条',
+              attrs: {}
+            }
+          }
         },
         {
           title: '操作',
