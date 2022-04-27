@@ -8,18 +8,18 @@ server:
       force: true
 sipsd:
   ip: 127.0.0.1
-  mysqlip: 192.168.253.128:5432
+  mysqlip: DB_HOST
 
 spring:
   application:
     name: dataway
   datasource:
-    driverClassName: org.postgresql.Driver
-    driver-class-name:  org.postgresql.Driver
-    jdbc-url: jdbc:postgresql://192.168.253.128:5432/test_db?useUnicode=true&characterEncoding=UTF8&serverTimezone=Asia/Shanghai&currentSchema=logfv
-    url: jdbc:postgresql://192.168.253.128:5432/test_db?useUnicode=true&characterEncoding=UTF8&serverTimezone=Asia/Shanghai&currentSchema=logfv
-    username: postgres
-    password: '123456'
+    driverClassName: com.mysql.jdbc.Driver
+    driver-class-name:  com.mysql.jdbc.Driver
+    jdbc-url: jdbc:mysql://${sipsd.mysqlip}:DB_PORT/DB_NAME?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false
+    url: jdbc:mysql://${sipsd.mysqlip}:DB_PORT/DB_NAME?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false
+    username: DB_USER
+    password: 'DB_PASSWD'
     type : com.alibaba.druid.pool.DruidDataSource
     #初始化时建立物理连接的个数
     druid:
