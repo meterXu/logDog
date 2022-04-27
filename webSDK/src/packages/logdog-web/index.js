@@ -1,6 +1,6 @@
-import LogFv,{replacer,axiosRequest,axiosError} from './src/index'
+import LogDog,{replacer,axiosRequest,axiosError} from './src/index'
 if (typeof window !== 'undefined') {
-    window.LogFv=LogFv
+    window.LogDog=LogDog
 }
 export {replacer,axiosRequest,axiosError}
-export default LogFv
+export default LogDog

@@ -1,44 +1,39 @@
-# 前端日志组件
-> 适用于前端的日志组件，通过数据驱动产品优化！
+# 前端日志狗组件
+> 适用于前端的日志组件！
 
 ## 1. 前端日志流程
 
-![前端日志流程](http://192.168.126.25/iplatform/codimd/uploads/upload_f905dc3a7c00e172106d85530d1cdb8f.png)
+![前端日志流程](http://IP/iplatform/codimd/uploads/upload_f905dc3a7c00e172106d85530d1cdb8f.png)
 
 
 ## 2. 前端日志架构设计
 
-![前端日志架构设计](http://192.168.126.25/iplatform/codimd/uploads/upload_c3776d40d13c7c9bfb92e6785f1e42ca.png)
+![前端日志架构设计](http://IP/iplatform/codimd/uploads/upload_c3776d40d13c7c9bfb92e6785f1e42ca.png)
 
 
 ## 2. 如何安装sdk
 
 ```bash=
-npm i @dpark/logfv-web --registry http://58.210.9.133/iplatform/npm/
+npm i logdog-web
 ```
 或
 ```bash=
-yarn add @dpark/logfv-web --registry http://58.210.9.133/iplatform/npm/
-```
-
-或
-```bash=
-<script type="text/javascript" src="http://58.210.9.133/iplatform/files/logfv-web/index.min.js"></script>
+yarn add logdog-web
 ```
 
 ## 3. 初始化
 
 **initConfig(globalConfig)**
 
-* 该方法为 Logfv 单例设定全局配置。一般情况下只需在引入 Logfv 后执行一次该方法，设定好全局参数即可。
-* 该方法每次被调用时，都会覆盖现有的 Logfv 全局配置。
+* 该方法为 Logdog 单例设定全局配置。一般情况下只需在引入 Logdog 后执行一次该方法，设定好全局参数即可。
+* 该方法每次被调用时，都会覆盖现有的 Logdog 全局配置。
 * 该方法不是必要的，以下配置参数也都是可选的。
 
 **globalConfig: 主要的参数配置。**
 
 | 参数         | 说明 | 是否可选 | 默认值 |
 | ------------ | ---- | -------- | -------- |
-| reportUrl    |  用于接收上报日志的服务器地址。如果在调用 report 方法时也配置了 reportUrl，会优先采用那个地址进行上报。    | 否     |http://192.168.126.25/logfv-server/logfv/web/upload|
+| reportUrl    |  用于接收上报日志的服务器地址。如果在调用 report 方法时也配置了 reportUrl，会优先采用那个地址进行上报。    | 否     |http://IP/logdog-server/logdog/web/upload|
 | appId|系统标识\命名空间，用于和其他系统记录的日志进行区分|否||
 | appName|系统名称|否||
 
@@ -49,9 +44,9 @@ yarn add @dpark/logfv-web --registry http://58.210.9.133/iplatform/npm/
 |reportConfig|日志上报的配置，如果不配置，则使用默认配置，默认自动上报1天内的数据|是| |
 | objType    | 使用日志组件的系统类型，1：系统，2：组件   | 是     | 1 |
 | publicKey    | 1024 位的 RSA 加密公钥. 如果你需要调用 logWithEncryption() 方法对本地日志进行加密操作，那么你必须事先配置该公钥。与该公钥配对的私钥存储于你的服务器上。     | 是     | null |
-| logTryTimes  |   Logfv 在遇到本地存储失败的情况下，会尝试的次数。默认为 3 次。如果 Logfv 存储失败了 logTryTimes 次数后将不再进行后续日志的存储。   | 是     | 3 |
-| dbName       | 你可以配置该项来自定义本地 DB 库的名字。默认为 logfv_db_{appName}。不同DB 库之间的数据是隔离而不受影响。     | 是     | logfv_db_{appName} |
-| errorHandler |  你可以配置该项来接收 log() 和 logWithEncryption() 方法可能产生的异常. Logfv 的 log 及 logWithEncryption 方法在底层会执行异步存储，因此你无需等待这两个方法的返回。如果你确实想知道 logfv 在存储时是否报错了，你可以配置该方法来获取异常。    | 是     | null |
+| logTryTimes  |   Logdog 在遇到本地存储失败的情况下，会尝试的次数。默认为 3 次。如果 Logdog 存储失败了 logTryTimes 次数后将不再进行后续日志的存储。   | 是     | 3 |
+| dbName       | 你可以配置该项来自定义本地 DB 库的名字。默认为 logdog_db_{appName}。不同DB 库之间的数据是隔离而不受影响。     | 是     | logdog_db_{appName} |
+| errorHandler |  你可以配置该项来接收 log() 和 logWithEncryption() 方法可能产生的异常. Logdog 的 log 及 logWithEncryption 方法在底层会执行异步存储，因此你无需等待这两个方法的返回。如果你确实想知道 logdog 在存储时是否报错了，你可以配置该方法来获取异常。    | 是     | null |
 | succHandler             |  你可以配置该项回调，该方法会在 log() 和 logWithEncryption() 方法内异步存储日志成功后执行。    |     是     |null|
 |frameConfig|组件扩展配置，配置一些全局的日志记录功能|是| |
 | console|是否在控制台同步打印日志，默认false|是| false |
@@ -90,24 +85,24 @@ yarn add @dpark/logfv-web --registry http://58.210.9.133/iplatform/npm/
 全局安装
 
 ```javascript=
-import Logfv from '@dpark/logfv-web';
-let logfv = new Logfv({
-  reportUrl: 'http://192.168.126.25/logfv-server/logfv/web/upload',
+import Logdog from '@dpark/logdog-web';
+let logdog = new Logdog({
+  reportUrl: 'http://IP/logdog-server/logdog/web/upload',
   appId:"appId",
   appName:"appName"
 })
 
 // 组件中使用
-logfv.info('content')
+logdog.info('content')
 ```
 
 覆盖默认日志上报时间
 
 ```javascript=
-import Logfv from '@dpark/logfv-web';
-let logfv = new LogFv()
-logfv.initConfig({
-  reportUrl: 'http://192.168.126.25/logfv-server/logfv/web/upload',
+import Logdog from '@dpark/logdog-web';
+let logdog = new LogDog()
+logdog.initConfig({
+  reportUrl: 'http://IP/logdog-server/logdog/web/upload',
   appId:"appId",
   appName:"appName"
   reportConfig:{
@@ -120,23 +115,23 @@ logfv.initConfig({
 记录日志并加密
 
 ```javascript=
-import LogFv from '@dpark/logfv-web';
+import LogDog from '@dpark/logdog-web';
 //初始化
-let logfv = new LogFv({
+let logdog = new LogDog({
     reportUrl: 'https://yourServerAddressToAcceptLogs',
     appId:"appId",
     appName:"appName"
 })
 //记录日志并加密
-logfv.infpWithEncryption('confidentialLogContent');
+logdog.infpWithEncryption('confidentialLogContent');
 ```
 
 记录日志并附带用户信息
 
 ```javascript=
-import LogFv from '@dpark/logfv-web';
+import LogDog from '@dpark/logdog-web';
 //初始化
-let logfv = new LogFv({
+let logdog = new LogDog({
     reportUrl: 'https://yourServerAddressToAcceptLogs',
     appId:"appId",
     appName:"appName"
@@ -147,7 +142,7 @@ let logfv = new LogFv({
     }
 })
 //记录日志并附带额外信息
-logfv.info('confidentialLogContent');
+logdog.info('confidentialLogContent');
 ```
 
 ## 4. 记录日志
@@ -208,7 +203,7 @@ logfv.info('confidentialLogContent');
 
 * 使用 log() 方法落地的日志接近于明文存储，任何有办法触达该用户端的人都能够获取到本地日志。
 * 如果你期望一些日志内容加密后再落地，你可以调用该方法。
-* logfv 使用对称加密结合非对称加密的方式来保障本地日志安全。日志内容会使用 AES 进行加密，同时 AES 加密时使用的对称密钥会使用 RSA 进行非对称加密，加密后的密钥密文会和日志密文一起落地下来。
+* logdog 使用对称加密结合非对称加密的方式来保障本地日志安全。日志内容会使用 AES 进行加密，同时 AES 加密时使用的对称密钥会使用 RSA 进行非对称加密，加密后的密钥密文会和日志密文一起落地下来。
 
 
 > 需要注意的是：虽然使用该方法存储后的日志很难再被破解，但是不能保证你的日志内容在存储之前不被窃听。另外由于在用户端加密以及在服务端解密都更耗费时间且可能引起性能问题，所以建议你只在日志内容敏感的必要时候使用该方法。
@@ -219,32 +214,32 @@ logfv.info('confidentialLogContent');
 记录普通日志
 
 ```javascript=
-import LogFv from '@dpark/logfv-web';
-let logfv = new LogFv({
+import LogDog from '@dpark/logdog-web';
+let logdog = new LogDog({
     appId:"appId",
     appName:"appName"
 })
-logfv.info('登录系统成功')
+logdog.info('登录系统成功')
 ```
 
 记录错误日志
 
 ```javascript=
-import LogFv from '@dpark/logfv-web';
-let logfv = new LogFv({
+import LogDog from '@dpark/logdog-web';
+let logdog = new LogDog({
     appId:"appId",
     appName:"appName"
 })
-logfv.error(`数据id为空，无法更新，数据内容：${JSON.parse(data)}`)
+logdog.error(`数据id为空，无法更新，数据内容：${JSON.parse(data)}`)
 ```
 
 记录错误日志，并附带相关数据
 
 ```javascript=
-import LogFv from '@dpark/logfv-web';
-let logfv = new LogFv({
+import LogDog from '@dpark/logdog-web';
+let logdog = new LogDog({
     appId:"appId",
     appName:"appName"
 })
-logfv.error(`数据id为空，无法更新，数据内容：${JSON.parse(data)}`)
+logdog.error(`数据id为空，无法更新，数据内容：${JSON.parse(data)}`)
 ```

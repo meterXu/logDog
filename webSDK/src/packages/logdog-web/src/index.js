@@ -1,6 +1,6 @@
 import Logan from './sdk/index';
 import LogWorker from './log.worker';
-window.logfvList = window.logfvList||[]
+window.logdogList = window.logdogList||[]
 function checkParams(globalConfig) {
     if (!globalConfig.appId) {
         console.error('appId未配置')
@@ -19,9 +19,9 @@ export const runTask = function (id, interval) {
     logWorker.onmessage = (e) => {
         switch (e.data.command) {
             case 'report': {
-                let logfvModel = logfvList.find(c => c.id === id)
-                if (logfvModel) {
-                    logfvModel.logfv.report()
+                let logdogModel = logdogList.find(c => c.id === id)
+                if (logdogModel) {
+                    logdogModel.logdog.report()
                 }
             }
                 break;
@@ -32,7 +32,7 @@ export const runTask = function (id, interval) {
 }
 
 function validateInit(config) {
-    if (logfvList.find(c => c.id === config.appId) && config.enable) {
+    if (logdogList.find(c => c.id === config.appId) && config.enable) {
         return true
     } else {
         return false
@@ -73,7 +73,7 @@ export function replacer(key, value) {
     }
 }
 
-export function axiosRequest(LogFv, config) {
+export function axiosRequest(LogDog, config) {
     if (!config) {
         config = {}
     }
@@ -85,10 +85,10 @@ export function axiosRequest(LogFv, config) {
         data: config.data,
         timeout: config.timeout
     }
-    LogFv.log(JSON.stringify(content, replacer), 'network')
+    LogDog.log(JSON.stringify(content, replacer), 'network')
 }
 
-export function axiosError(LogFv, err) {
+export function axiosError(LogDog, err) {
     if (!err) {
         err = {
             config: {}
@@ -108,15 +108,15 @@ export function axiosError(LogFv, err) {
             timeout: err.config.timeout
         }
     }
-    LogFv.log(JSON.stringify(content, replacer), 'exception')
+    LogDog.log(JSON.stringify(content, replacer), 'exception')
 }
 
-function LogFv(config) {
+function LogDog(config) {
     this.logan = null
     this.globalConfig = {
         enable: true,
         console: false,
-        reportUrl: 'http://192.168.126.25/logfv-server/logfv/web/upload',
+        reportUrl: '',
         objType:1,
         publicKey:
             '-----BEGIN PUBLIC KEY-----\n' +
@@ -151,7 +151,7 @@ function LogFv(config) {
     this.initConfig = function (config) {
         if (checkParams(config)) {
             this.globalConfig = Object.assign(this.globalConfig, config)
-            this.globalConfig.dbName = this.globalConfig.dbName || 'logfv-db-' + this.globalConfig.appId
+            this.globalConfig.dbName = this.globalConfig.dbName || 'logdog-db-' + this.globalConfig.appId
             this.reportConfig = Object.assign(this.reportConfig, config.reportConfig)
             this.reportConfig.deviceId = this.globalConfig.appId
             this.reportConfig.appName = this.globalConfig.appName
@@ -166,17 +166,17 @@ function LogFv(config) {
             }
             this.logan.initConfig(this.globalConfig)
             this.bindFrame(this.globalConfig.appId, this.globalConfig.frameConfig)
-            let logfvModel = logfvList.find(c => c.id === this.globalConfig.appId)
-            if (!logfvModel) {
-                logfvModel = {
+            let logdogModel = logdogList.find(c => c.id === this.globalConfig.appId)
+            if (!logdogModel) {
+                logdogModel = {
                     id: this.globalConfig.appId,
-                    logfv: this,
+                    logdog: this,
                     task: false
                 }
-                logfvList.push(logfvModel)
+                logdogList.push(logdogModel)
             }
-            if(!logfvModel.task){
-                logfvModel.task = true
+            if(!logdogModel.task){
+                logdogModel.task = true
                 runTask(this.globalConfig.appId, this.globalConfig.reportConfig.interval)
             }
         }
@@ -314,14 +314,14 @@ function LogFv(config) {
 
     }
     if (config) {
-        let logfvModel = logfvList.find(c=>c.id===config.appId)
-        if(logfvModel){
-            logfvModel.logfv.initConfig(config)
-            return logfvModel.logfv
+        let logdogModel = logdogList.find(c=>c.id===config.appId)
+        if(logdogModel){
+            logdogModel.logdog.initConfig(config)
+            return logdogModel.logdog
         }else{
             this.initConfig(config)
         }
     }
 }
 
-export default LogFv
+export default LogDog

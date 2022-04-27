@@ -1,21 +1,21 @@
 {
-  "name": "@dpark/logfv-web-vue",
-  "version": "1.0.25",
-  "description": "vue日志组件",
+  "name": "logdog-web-vue",
+  "version": "1.0.1",
+  "description": "vue日志狗组件",
   "license": "MIT",
   "scripts": {
     "build": "webpack --config ./webpack.config"
   },
   "main": "dist/index.min.js",
-  "author": "框架技术研发部",
+  "author": "isaac",
   "private": false,
   "contributors": [
     "isaac"
   ],
-  "homepage": "http://192.168.126.25/git/scri/our-dev-group/logfv",
+  "homepage": "",
   "bugs": {
-    "url": "http://192.168.126.25/git/scri/our-dev-group/logfv/-/issues",
-    "email": "xuhg@dpark.com.cn"
+    "url": "",
+    "email": ""
   },
   "keywords": [
     "vue",

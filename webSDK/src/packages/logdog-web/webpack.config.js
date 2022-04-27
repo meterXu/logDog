@@ -6,7 +6,7 @@ module.exports = {
     output: {
         publicPath: './',
         filename: '[name].min.js',
-        library: 'logfv_web',
+        library: 'logdog_web',
         libraryTarget: 'umd'
     },
     module:{
