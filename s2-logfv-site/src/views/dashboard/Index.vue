@@ -8,7 +8,7 @@
               <div class="chart-card-header">
                 <div class="meta"><span class="chart-card-title">接入系统数</span></div>
                 <div class="total">
-                  <span v-if="querySystems">{{querySystems}}</span>
+                  <span v-if="querySystems!==null">{{querySystems}}</span>
                   <a-spin v-else></a-spin>
                 </div>
               </div>
@@ -26,7 +26,7 @@
               <div class="chart-card-header">
                 <div class="meta"><span class="chart-card-title">运行时长</span></div>
                 <div class="total">
-                  <span v-if="runtime">{{runtime||0}}天</span>
+                  <span v-if="runtime!==null">{{runtime||0}}天</span>
                   <a-spin v-else></a-spin>
                 </div>
               </div>
@@ -44,7 +44,7 @@
               <div class="chart-card-header">
                 <div class="meta"><span class="chart-card-title">日志总数</span></div>
                 <div class="total">
-                  <span v-if="queryTotalPage">{{queryTotalPage}}</span>
+                  <span v-if="queryTotalPage!==null">{{queryTotalPage}}</span>
                   <a-spin v-else></a-spin>
                 </div>
               </div>
@@ -62,7 +62,7 @@
               <div class="chart-card-header">
                 <div class="meta"><span class="chart-card-title" >总日志大小</span></div>
                 <div class="total">
-                  <span v-if="queryLogSize">{{queryLogSize}}M</span>
+                  <span v-if="queryLogSize!==null">{{queryLogSize}}M</span>
                   <a-spin v-else></a-spin>
                 </div>
               </div>
@@ -128,10 +128,10 @@ export default {
       areaStackLoaded:false,
       barYCategoryShow:false,
       loading:false,
-      querySystems:0,
-      runtime:0,
-      queryTotalPage:0,
-      queryLogSize:0
+      querySystems:null,
+      runtime:null,
+      queryTotalPage:null,
+      queryLogSize:null
     }
   },
   methods:{
