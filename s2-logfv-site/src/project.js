@@ -52,7 +52,7 @@ const project_logfvSite = {
     autoHideHeader: false,
   },
   config: {
-    "logo": "./static/logfvSite/img/logo_sipsd.png",
+    "logo": "./static/logfvSite/img/logo_sipsd_white.png",
     "darkLogo": "./static/logfvSite/img/logo_sipsd_white.png",
     "favicon": "./static/logfvSite/img/logo_sipsd_favicon.png",
     "title": "前端日志",
