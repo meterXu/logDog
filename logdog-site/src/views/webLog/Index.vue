@@ -172,7 +172,7 @@ export default {
         }
       ],
       url: {
-        list: '/logfv/web/query',
+        list: '/logdog/web/query',
         deleteBatch: '',
         exportXlsUrl: '',
         importExcelUrl: '',

@@ -1,19 +1,19 @@
 def rootPath  = "./deployments" //镜像构建脚本路径
 def shellPath  = "./build.sh" //镜像构建脚本
 def projectName = "沃壤前端日志工具" //项目名称
-def gitUrl = "http://192.168.126.25/git/cbb/logfv.git" //git地址
+def gitUrl = "http://192.168.126.25/git/cbb/logdog.git" //git地址
 def branch = "master" //git分支
 def credentialsId = "c078ac92-89dd-4842-8292-5e348e68db08" //git认证id
-def repositories = "192.168.126.19:85/logfv/" //镜像仓库地址
+def repositories = "192.168.126.19:85/logdog/" //镜像仓库地址
 def auth = "admin:Sipsd@123" //镜像仓库认证信息
-def tag = "logfv:latest" //镜像标签
-def deleteUrl = "http://192.168.126.19:85/api/repositories/logfv/logfv/tags/latest" //镜像删除接口地址
+def tag = "logdog:latest" //镜像标签
+def deleteUrl = "http://192.168.126.19:85/api/repositories/logdog/logdog/tags/latest" //镜像删除接口地址
 def remoteHost="192.168.126.16" //容器所在服务器地址
 def remoteUser="root" //容器所在服务器用户名
 def remotePwd="kjjsyf#1314" //容器所在服务器密码
-def containerName = "logfv-app" //容器名称
-def dockerCompose = "/home/soft/logfv.yml" //容器编排脚本路径
-def projectUrl="http://58.210.9.133/iplatform/ifp-logfv"
+def containerName = "logdog-app" //容器名称
+def dockerCompose = "/home/soft/logdog.yml" //容器编排脚本路径
+def projectUrl="http://58.210.9.133/iplatform/ifp-logdog"
 def robot = "360ac2ce-efe5-4478-8703-7cd3bd463044" //钉钉机器人ID
 pipeline {
     agent any

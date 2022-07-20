@@ -245,7 +245,7 @@ public class WebLogController {
     @GetMapping("/getDownLoadUrl")
     @ResponseBody
     public LoganResponse<String> getDownLoadUrl(String tasks) {
-        return LoganResponse.success(String.format("/logfv-server/logfv/web/download.json?tasks=%s", tasks));
+        return LoganResponse.success(String.format("/logdog-server/logdog/web/download.json?tasks=%s", tasks));
     }
 
     /**

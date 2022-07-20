@@ -1,7 +1,7 @@
 -- 表结构及初始化数据只执行一次
 
--- logfv-schema
-create table logfv_version
+-- logdog-schema
+create table logdog_version
 (
     id          int auto_increment comment '编码uuid'
         primary key,
@@ -184,7 +184,7 @@ create table interface_release
 comment 'Dataway API 发布记录' charset=utf8mb4;
 
 
--- logfv-data
+-- logdog-data
 INSERT INTO web_task
 (id, device_id, device_name, environment, page_num, content, add_time, log_date, status, custom_report_info, update_time, web_source, obj_type, record_year, record_month, record_day)
 VALUES (1, 'demo', 'demo系统', null, 1, '["{\\"t\\":\\"info\\",\\"c\\":\\"hello%20world\\",\\"d\\":\\"1635481539243\\",\\"e\\":\\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36\\",\\"i\\":\\"\\",\\"s\\":\\"browser\\"}","{\\"t\\":\\"page\\",\\"c\\":\\"hello%20world\\",\\"d\\":\\"1635481539245\\",\\"e\\":\\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36\\",\\"i\\":\\"\\",\\"s\\":\\"browser\\"}","{\\"t\\":\\"info\\",\\"c\\":\\"hello%20world\\",\\"d\\":\\"1635481539450\\",\\"e\\":\\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36\\",\\"i\\":\\"\\",\\"s\\":\\"browser\\"}","{\\"t\\":\\"page\\",\\"c\\":\\"hello%20world\\",\\"d\\":\\"1635481539451\\",\\"e\\":\\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36\\",\\"i\\":\\"\\",\\"s\\":\\"browser\\"}","{\\"t\\":\\"info\\",\\"c\\":\\"hello%20world\\",\\"d\\":\\"1635481539828\\",\\"e\\":\\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36\\",\\"i\\":\\"\\",\\"s\\":\\"browser\\"}","{\\"t\\":\\"page\\",\\"c\\":\\"hello%20world\\",\\"d\\":\\"1635481539829\\",\\"e\\":\\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36\\",\\"i\\":\\"\\",\\"s\\":\\"browser\\"}"]', REPLACE(unix_timestamp(NOW(3)),'.',''), unix_timestamp(NOW())*1000, 0, null, NOW(), null, 1, DATE_FORMAT(NOW(),'%Y'), DATE_FORMAT(NOW(),'%m'), DATE_FORMAT(NOW(),'%e'));

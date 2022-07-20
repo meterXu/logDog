@@ -13,43 +13,43 @@
     </style>
     <script type="text/javascript" src="../dist/index.min.js"></script>
     <script type="text/javascript">
-        this.text = "hello logfv"
-        this.logfv = new LogDog({
-            reportUrl: "http://192.168.253.128:9999/logfv-server/logfv/web/upload",
-            appId: `test-logfv-web`,
+        this.text = "hello logdog"
+        this.logdog = new LogDog({
+            reportUrl: "http://192.168.253.128:9999/logdog-server/logdog/web/upload",
+            appId: `test-logdog-web`,
             appName: '测试系统1',
             console: true,
             enable: true
         })
         function info() {
-            this.logfv.info(this.text)
+            this.logdog.info(this.text)
         }
         function warn() {
-            this.logfv.warn(this.text)
+            this.logdog.warn(this.text)
         }
         function debug() {
-            this.logfv.debug(this.text)
+            this.logdog.debug(this.text)
         }
         function error() {
-            this.logfv.error(this.text)
+            this.logdog.error(this.text)
         }
         function log() {
-            this.logfv.log(this.text,'custom-type')
+            this.logdog.log(this.text,'custom-type')
         }
         function infoWithEncryption() {
-            this.logfv.infoWithEncryption(this.text)
+            this.logdog.infoWithEncryption(this.text)
         }
         function warnWithEncryption() {
-            this.logfv.warnWithEncryption(this.text)
+            this.logdog.warnWithEncryption(this.text)
         }
         function errorWithEncryption() {
-            this.logfv.errorWithEncryption(this.text)
+            this.logdog.errorWithEncryption(this.text)
         }
         function debugWithEncryption() {
-            this.logfv.debugWithEncryption(this.text)
+            this.logdog.debugWithEncryption(this.text)
         }
         function logWithEncryption() {
-            this.logfv.logWithEncryption(this.text,'custom-encryption-type')
+            this.logdog.logWithEncryption(this.text,'custom-encryption-type')
         }
     </script>
 </head>

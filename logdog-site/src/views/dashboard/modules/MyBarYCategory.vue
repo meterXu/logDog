@@ -87,7 +87,7 @@ export default {
     }
   },
   async mounted() {
-    let res = await getAction("/logfv/web/queryLogCount")
+    let res = await getAction("/logdog/web/queryLogCount")
     if (res.success) {
       this.dataSource = res.value||[]
     }else{

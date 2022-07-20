@@ -6,7 +6,7 @@ ENV DB_PORT=3306
 ENV DB_NAME=${DB_NAME}
 ENV DB_USER=root
 ENV DB_PASSWD=${DB_PASSWD}
-ENV URL_PATH=logfv
+ENV URL_PATH=logdog
 ENV BASE_API=${BASE_API}
 ENV TZ=Asia/Shanghai
 ENV PATH=/usr/local/lib/nodejs/bin:${PATH}
@@ -14,9 +14,9 @@ USER root
 WORKDIR /home
 EXPOSE 8080 9191
 COPY docker-entrypoint.sh ./
-COPY logfv ./logfv
-COPY logfv-server ./logfv-server
-COPY logfv-server.war ./logfv-server.war
+COPY logdog ./logdog
+COPY logdog-server ./logdog-server
+COPY logdog-server.war ./logdog-server.war
 COPY nodejs ./nodejs
 COPY dbInit ./dbInit
 COPY dataway ./dataway

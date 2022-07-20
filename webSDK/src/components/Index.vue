@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>logfv-web-vue</h1>
+    <h1>logdog-web-vue</h1>
   </div>
 </template>
 

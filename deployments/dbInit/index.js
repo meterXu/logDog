@@ -57,7 +57,7 @@ async function execData() {
 
 async function checkUpdate() {
     try{
-        let rows = await dataProvider.query(config, 'select * from logfv_version order by create_time desc')
+        let rows = await dataProvider.query(config, 'select * from logdog_version order by create_time desc')
         if(rows.length==0||rows[0]['version']!=lastVersion){
             let sqlArray = await readSql(files.update)
             for (let i = 0; i < sqlArray.length; i++) {

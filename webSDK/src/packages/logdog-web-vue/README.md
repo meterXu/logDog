@@ -15,8 +15,8 @@ yarn add logdog-web-vue
 
 **initConfig(globalConfig)**
 
-* 该方法为 Logfv 单例设定全局配置。一般情况下只需在引入 Logfv 后执行一次该方法，设定好全局参数即可。
-* 该方法每次被调用时，都会覆盖现有的 Logfv 全局配置。
+* 该方法为 Logdog 单例设定全局配置。一般情况下只需在引入 Logdog 后执行一次该方法，设定好全局参数即可。
+* 该方法每次被调用时，都会覆盖现有的 Logdog 全局配置。
 * 该方法不是必要的，以下配置参数也都是可选的。
 
 
@@ -35,9 +35,9 @@ yarn add logdog-web-vue
 |reportConfig|日志上报的配置，如果不配置，则使用默认配置，默认自动上报1天内的数据|是| |
 | objType    | 使用日志组件的系统类型，1：系统，2：组件   | 是     | 1 |
 | publicKey    | 1024 位的 RSA 加密公钥. 如果你需要调用 logWithEncryption() 方法对本地日志进行加密操作，那么你必须事先配置该公钥。与该公钥配对的私钥存储于你的服务器上。     | 是     | null |
-| logTryTimes  |   Logfv 在遇到本地存储失败的情况下，会尝试的次数。默认为 3 次。如果 Logfv 存储失败了 logTryTimes 次数后将不再进行后续日志的存储。   | 是     | 3 |
-| dbName       | 你可以配置该项来自定义本地 DB 库的名字。默认为 logfv_db_{appName}。不同DB 库之间的数据是隔离而不受影响。     | 是     | logfv_db_{appName} |
-| errorHandler |  你可以配置该项来接收 log() 和 logWithEncryption() 方法可能产生的异常. Logfv 的 log 及 logWithEncryption 方法在底层会执行异步存储，因此你无需等待这两个方法的返回。如果你确实想知道 logdog 在存储时是否报错了，你可以配置该方法来获取异常。    | 是     | null |
+| logTryTimes  |   Logdog 在遇到本地存储失败的情况下，会尝试的次数。默认为 3 次。如果 logdog 存储失败了 logTryTimes 次数后将不再进行后续日志的存储。   | 是     | 3 |
+| dbName       | 你可以配置该项来自定义本地 DB 库的名字。默认为 logdog_db_{appName}。不同DB 库之间的数据是隔离而不受影响。     | 是     | logdog_db_{appName} |
+| errorHandler |  你可以配置该项来接收 log() 和 logWithEncryption() 方法可能产生的异常. logdog 的 log 及 logWithEncryption 方法在底层会执行异步存储，因此你无需等待这两个方法的返回。如果你确实想知道 logdog 在存储时是否报错了，你可以配置该方法来获取异常。    | 是     | null |
 | succHandler             |  你可以配置该项回调，该方法会在 log() 和 logWithEncryption() 方法内异步存储日志成功后执行。    |     是     |null|
 |frameConfig|组件扩展配置，配置一些全局的日志记录功能|是| |
 | console|是否在控制台同步打印日志，默认false|是| false |

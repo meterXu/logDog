@@ -1,4 +1,4 @@
-const namespace = "logfvSite"
+const namespace = "logdogSite"
 const CopyPlugin  = require('copy-webpack-plugin');
 const s2Conf = require('./s2.config.json')
 const fs = require('fs')

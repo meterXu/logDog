@@ -1,21 +1,21 @@
 version: "3"
 services:
-  logfv:
-    image: logfv:latest
-    container_name: logfv-app
+  logdog:
+    image: logdog:latest
+    container_name: logdog-app
     environment:
       - DB_HOST=192.168.253.128
-      - DB_NAME=logfv
+      - DB_NAME=logdog
       - DB_PORT=3306
       - DB_PASSWD=123456
       - BASE_API=http://192.168.253.128:9191
     networks:
-      - logfv-tier
+      - logdog-tier
     ports:
       - "9999:8080"
       - "9191:9191"
     restart: always
 
 networks:
-  logfv-tier:
+  logdog-tier:
     driver: bridge

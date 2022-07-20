@@ -18,13 +18,13 @@
 </template>
 
 <script>
-import {LogFv} from '../packages/logfv-web-vue/index'
+import {logdog} from '../packages/logdog-web-vue/index'
 export default {
   name: "Test.vue",
   data(){
     return {
       runText:'未运行',
-      logfvObjs:[],
+      logdogObjs:[],
       objLength:100000000,
       intervalObj:null,
       time:1,
@@ -46,7 +46,7 @@ export default {
         this.runText = '运行中'
         this.timeoutExec();
       }else{
-        this.logfvObjs = []
+        this.logdogObjs = []
         this.objLengthDisable= false
         this.endTime = new Date()
         this.runText = '未运行'
@@ -62,21 +62,21 @@ export default {
       },this.time*1000)
     },
     execLog(){
-      for (let i=0;i<this.logfvObjs.length;i++){
+      for (let i=0;i<this.logdogObjs.length;i++){
         let as = this.getRandomArrayElements(this.logActionArray,this.actionCount)
         for (let j=0;j<as.length;j++)
           switch (as[j]){
             case 'info':{
-              this.logfvObjs[i].info('info')
+              this.logdogObjs[i].info('info')
             }break;
             case 'warn':{
-              this.logfvObjs[i].warn('warn')
+              this.logdogObjs[i].warn('warn')
             }break;
             case 'debug':{
-              this.logfvObjs[i].debug('debug')
+              this.logdogObjs[i].debug('debug')
             }break;
             case 'error':{
-              this.logfvObjs[i].error('error')
+              this.logdogObjs[i].error('error')
             }break;
           }
       }
@@ -96,7 +96,7 @@ export default {
 },
     initLogObj(){
       for (let i =0;i<this.objLength;i++){
-        let lf = new LogFv({
+        let lf = new logdog({
           reportUrl:this.$uploadUrl,
           appId:`test${i+1}`,
           appName:`测试系统${i+1}`,
@@ -106,7 +106,7 @@ export default {
             interval:this.interval
           }
         })
-        this.logfvObjs.push(lf)
+        this.logdogObjs.push(lf)
       }
     }
 }

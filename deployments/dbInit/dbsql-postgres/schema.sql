@@ -1,16 +1,16 @@
 -- 表结构及初始化数据只执行一次
 
-create table if not exists logfv_version
+create table if not exists logdog_version
 (
 	id serial not null
-		constraint logfv_version_pk
+		constraint logdog_version_pk
 			primary key,
 	version varchar(20) not null,
 	time_stamp bigint,
 	create_time timestamp default CURRENT_TIMESTAMP
 );
 
-alter table logfv_version owner to postgres;
+alter table logdog_version owner to postgres;
 
 create table if not exists web_task
 (

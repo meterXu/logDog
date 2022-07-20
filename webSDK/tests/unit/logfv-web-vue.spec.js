@@ -1,6 +1,6 @@
-import {timeFormat2Day, validateInit, generateDates, checkParams} from '../../src/packages/logfv-web-vue/src/index'
+import {timeFormat2Day, validateInit, generateDates, checkParams} from '../../src/packages/logdog-web-vue/src/index'
 
-describe('logfv-web-vue', () => {
+describe('logdog-web-vue', () => {
   it('checkParams', () => {
     expect(checkParams({
       reportUrl:'aa',

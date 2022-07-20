@@ -5,9 +5,9 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "build:logfv-web": "cd src/packages/logfv-web && npm run build",
-    "build:logfv-web-vue": "cd src/packages/logfv-web-vue && npm run build",
-    "publish:logfv-web-vue": "cd src/packages/logfv-web-vue && npm publish",
+    "build:logdog-web": "cd src/packages/logdog-web && npm run build",
+    "build:logdog-web-vue": "cd src/packages/logdog-web-vue && npm run build",
+    "publish:logdog-web-vue": "cd src/packages/logdog-web-vue && npm publish",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
   },

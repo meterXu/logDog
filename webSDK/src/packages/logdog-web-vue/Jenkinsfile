@@ -1,7 +1,7 @@
 def cover = false //相同版本是否覆盖
-def rootPath = "./webSDK/src/packages/logfv-web-vue"
-def tgzName = "logfv-web-vue"
-def gitUrl = "http://192.168.126.25/git/cbb/logfv.git"
+def rootPath = "./webSDK/src/packages/logdog-web-vue"
+def tgzName = "logdog-web-vue"
+def gitUrl = "http://192.168.126.25/git/cbb/logdog.git"
 def branch = "master"
 def credentialsId = "c078ac92-89dd-4842-8292-5e348e68db08"
 def npm = "http://192.168.126.25/npm"

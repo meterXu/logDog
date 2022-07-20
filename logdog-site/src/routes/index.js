@@ -4,12 +4,12 @@ import {util} from "@dpark/s2-utils"
 export const frameRoutes = util.parseRoutes([
     // 空白布局存放此处
     {
-        path: '/logfvSite/login',
+        path: '/logdogSite/login',
         name: '@getRoutesName(path)',
         component: Login
     },
     {
-        path: '/logfvSite/blank',
+        path: '/logdogSite/blank',
         name: '@getRoutesName(path)',
         component: 'layouts/BlankLayout',
         children: []
@@ -17,7 +17,7 @@ export const frameRoutes = util.parseRoutes([
 ])
 export default util.parseRoutes([
     {
-        'path': '/logfvSite',
+        'path': '/logdogSite',
         'name': '@getRoutesName(path)',
         'component': 'layouts/RouteView',
         'children': [

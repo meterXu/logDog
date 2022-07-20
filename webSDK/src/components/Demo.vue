@@ -40,7 +40,7 @@ export default {
   name: "Demo",
   data() {
     return {
-      text: 'hello logfv'
+      text: 'hello logdog'
     }
   },
   beforeRouteEnter(to,from,next){
@@ -49,40 +49,40 @@ export default {
   },
   methods: {
     info() {
-      this.$logfv.info(this.text)
+      this.$logdog.info(this.text)
     },
     warn() {
-      this.$logfv.warn(this.text)
+      this.$logdog.warn(this.text)
     },
     debug() {
-      this.$logfv.debug(this.text)
+      this.$logdog.debug(this.text)
     },
     error() {
-      this.$logfv.error(this.text)
+      this.$logdog.error(this.text)
     },
     log() {
-      this.$logfv.log(this.text,'custom-type')
+      this.$logdog.log(this.text,'custom-type')
     },
     infoWithEncryption() {
-      this.$logfv.infoWithEncryption(this.text)
+      this.$logdog.infoWithEncryption(this.text)
     },
     warnWithEncryption() {
-      this.$logfv.warnWithEncryption(this.text)
+      this.$logdog.warnWithEncryption(this.text)
     },
     errorWithEncryption() {
-      this.$logfv.errorWithEncryption(this.text)
+      this.$logdog.errorWithEncryption(this.text)
     },
     debugWithEncryption() {
-      this.$logfv.debugWithEncryption(this.text)
+      this.$logdog.debugWithEncryption(this.text)
     },
     logWithEncryption() {
-      this.$logfv.logWithEncryption(this.text,'custom-encryption-type')
+      this.$logdog.logWithEncryption(this.text,'custom-encryption-type')
     },
     autolog(){
       let itemNum = 2000;
       for (let i = 0; i < itemNum; i++) {
         let logString =`${this.text}:${i}`;
-        this.$logfv.warn(logString);
+        this.$logdog.warn(logString);
       }
       console.log('记录成功')
     },
@@ -98,7 +98,7 @@ export default {
     },
     async report() {
       try {
-        let res = await this.$logfv.report()
+        let res = await this.$logdog.report()
         console.log(res)
       } catch (err) {
         console.error(err)

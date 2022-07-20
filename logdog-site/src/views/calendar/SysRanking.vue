@@ -43,8 +43,8 @@ export default {
       dateTime:null,
       dayData:[],
       url:{
-        getDayLogType:"/logfv/web/getDayLogType",
-        getCountByGroupByLogType:"/logfv/web/getCountByGroupByLogType"
+        getDayLogType:"/logdog/web/getDayLogType",
+        getCountByGroupByLogType:"/logdog/web/getCountByGroupByLogType"
       }
     }
   },

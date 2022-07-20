@@ -6,7 +6,7 @@ export function staticPermission() {
     return {
         menu: util.parseRoutes([
             {
-                path: '/logfvSite/dashboard/index',
+                path: '/logdogSite/dashboard/index',
                 name: '@getRoutesName(path)',
                 meta: {
                     icon:'dashboard',
@@ -15,7 +15,7 @@ export function staticPermission() {
                 }
             },
             {
-                path: '/logfvSite/webLog/index',
+                path: '/logdogSite/webLog/index',
                 name: '@getRoutesName(path)',
                 meta: {
                     icon:'search',
@@ -24,7 +24,7 @@ export function staticPermission() {
                 }
             },
             {
-                path: '/logfvSite/calendar/index',
+                path: '/logdogSite/calendar/index',
                 name: '@getRoutesName(path)',
                 meta: {
                     icon:{

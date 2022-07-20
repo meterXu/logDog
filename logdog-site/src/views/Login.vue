@@ -22,7 +22,7 @@ export default {
     Vue.ls.set(type.ACCESS_TOKEN,token)
     Vue.ls.set(type.USER_NAME, userInfo.username)
     Vue.ls.set(type.USER_INFO, userInfo)
-    this.$router.push({path:this.$project_logfvSite.redirect.index})
+    this.$router.push({path:this.$project_logdogSite.redirect.index})
   }
 }
 </script>

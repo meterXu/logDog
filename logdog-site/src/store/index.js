@@ -1,4 +1,4 @@
-const logfvSite = {
+const logdogSite = {
     state: {
         content:'hello',
         highlightStartIndex:-1,
@@ -19,4 +19,4 @@ const logfvSite = {
     }
 }
 
-export default logfvSite
+export default logdogSite

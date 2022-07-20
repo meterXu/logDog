@@ -56,8 +56,8 @@ export default {
       focusLogId:null,
       loading:true,
       url:{
-        dateLogIndex:'/logfv/web/dateLogIndex',
-        dateLogDetails:'/logfv/web/dateLogDetails'
+        dateLogIndex:'/logdog/web/dateLogIndex',
+        dateLogDetails:'/logdog/web/dateLogDetails'
       },
       pr:0,
       logDetail:null,
@@ -83,8 +83,8 @@ export default {
   },
   computed:{
     ...mapState({
-      highlightStartIndex:state=>state.biz.logfvSite.highlightStartIndex,
-      highlightEndIndex:state=>state.biz.logfvSite.highlightEndIndex
+      highlightStartIndex:state=>state.biz.logdogSite.highlightStartIndex,
+      highlightEndIndex:state=>state.biz.logdogSite.highlightEndIndex
     }),
     date(){
       return moment(parseInt(this.logDate)).format('YYYY-MM-DD')

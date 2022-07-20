@@ -120,10 +120,10 @@ export default {
   data(){
     return{
       url:{
-        querySystems:"/logfv/web/querySystems",
-        runtime:"/logfv/web/runtime",
-        queryTotalPage:"/logfv/web/queryTotalPage",
-        queryLogSize:"/logfv/web/queryLogSize"
+        querySystems:"/logdog/web/querySystems",
+        runtime:"/logdog/web/runtime",
+        queryTotalPage:"/logdog/web/queryTotalPage",
+        queryLogSize:"/logdog/web/queryLogSize"
       },
       areaStackLoaded:false,
       barYCategoryShow:false,

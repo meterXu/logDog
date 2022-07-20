@@ -7,18 +7,18 @@ import {util} from "@dpark/s2-utils";
 export default util.parseRoutes([
   // 带头部和菜单的布局存放此处
   {
-    path: '/logfvSite/dashboard/index',
+    path: '/logdogSite/dashboard/index',
     name: '@getRoutesName(path)',
     component: Dashboard
   },
   {
-    path: '/logfvSite/calendar/index',
+    path: '/logdogSite/calendar/index',
     name: '@getRoutesName(path)',
     component: CalendarView
   },
   {
-    path: '/logfvSite/calendar/sysRanking/:timestamp',
-    name: 'logfvSite_calendar_sysRanking',
+    path: '/logdogSite/calendar/sysRanking/:timestamp',
+    name: 'logdogSite_calendar_sysRanking',
     component: SysRanking,
     meta:{
       title: '当日详情',
@@ -27,13 +27,13 @@ export default util.parseRoutes([
     props: true
   },
   {
-    path: '/logfvSite/webLog/index',
+    path: '/logdogSite/webLog/index',
     name: '@getRoutesName(path)',
     component: WebLog,
   },
   {
-    path: '/logfvSite/webLog/dateLogDetail/:deviceId/:deviceName/:logDate/:logType',
-    name: 'logfvSite_webLog_dateLogDetail',
+    path: '/logdogSite/webLog/dateLogDetail/:deviceId/:deviceName/:logDate/:logType',
+    name: 'logdogSite_webLog_dateLogDetail',
     component: DateLogDetail,
     meta:{
       title:'查看详情',

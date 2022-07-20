@@ -16,7 +16,7 @@
     <div v-if="logDetail" class="log-content">
       日志信息:
       <br />
-      <div id="logfv-code">
+      <div id="logdog-code">
         <codemirror style="height: 500px" :options="cmOptions" :value="realContent"></codemirror>
       </div>
     </div>
@@ -140,14 +140,14 @@ export default {
 }
 </style>
 <style>
-#logfv-code {
+#logdog-code {
   overflow-y: auto;
   overflow-x: hidden;
   right: 12px;
   left: 12px;
   border: 1px solid #ddd;
 }
-#logfv-code .CodeMirror {
+#logdog-code .CodeMirror {
   height: 100% !important;
 }
 </style>

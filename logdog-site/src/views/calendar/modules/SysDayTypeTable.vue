@@ -74,7 +74,7 @@ export default {
         }
       },
       url:{
-        list:"/logfv/web/getCount"
+        list:"/logdog/web/getCount"
       }
     }
   },
@@ -82,7 +82,7 @@ export default {
     logDetail(record){
       this.$router.push(
           {
-            name:'logfvSite_webLog_dateLogDetail',
+            name:'logdogSite_webLog_dateLogDetail',
             params:{
               deviceId:record.device_id,
               deviceName:record.device_name,

@@ -1,6 +1,6 @@
 <template>
   <a-card :bordered="false">
-    <div class="logfv-date-pie">
+    <div class="logdog-date-pie">
       <a-row style="width: 1100px;">
        <a-col class="logType-legend" v-for="item in webLogTypeConfigs" :key="item.logType" :span="2">
          <span class="logType-color" :style="{'background': item.displayColor}"></span>
@@ -47,7 +47,7 @@ export default {
       mode:'month',
       webLogTypeConfigs:webLogTypeConfigs,
       url:{
-        getCountByGroupByLogType:"/logfv/web/getCountByGroupByLogType"
+        getCountByGroupByLogType:"/logdog/web/getCountByGroupByLogType"
       }
     }
   },
@@ -91,7 +91,7 @@ export default {
     },
     showSysRanking(date,dayData){
       this.$router.push({
-        name: `logfvSite_calendar_sysRanking`,
+        name: `logdogSite_calendar_sysRanking`,
         params:{
           timestamp:date.valueOf()
         },
@@ -129,7 +129,7 @@ export default {
 </style>
 
 <style lang="less">
-.logfv-date-pie{
+.logdog-date-pie{
   .ant-fullcalendar-content .events {
     height: 100%;
   }

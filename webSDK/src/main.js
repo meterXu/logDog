@@ -5,7 +5,7 @@ import vueAxios from 'vue-axios'
 import router from './router'
 Vue.config.productionTip = false
 Vue.use(vueAxios,axios)
-import vueLogFv from './packages/logfv-web-vue/index'
+import vuelogdog from './packages/logdog-web-vue/index'
 
 Vue.prototype.axios.interceptors.request.use(config=>{
   console.log(`用户处理request，${new Date()}`)
@@ -29,7 +29,7 @@ Vue.mixin({
 
 axios.get("./config.json").then(res=>{
   Vue.prototype.$uploadUrl = res.data.uploadUrl
-  Vue.use(vueLogFv,{
+  Vue.use(vuelogdog,{
     reportUrl:Vue.prototype.$uploadUrl,
     appId:"test",
     appName:'测试系统',

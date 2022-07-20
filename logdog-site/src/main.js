@@ -26,5 +26,5 @@ portal.registerApp({routes,permission:staticPermission,store,frameRoutes,project
         }
     }
 
-    globaVue.prototype.$project_logfvSite = project
+    globaVue.prototype.$project_logdogSite = project
 })

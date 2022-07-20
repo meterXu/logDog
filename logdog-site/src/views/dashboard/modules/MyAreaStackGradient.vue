@@ -188,7 +188,7 @@ export default {
     }
   },
   async mounted() {
-    await getAction("/logfv/web/queryLogType").then((res) => {
+    await getAction("/logdog/web/queryLogType").then((res) => {
      if (res.success) {
        this.dataSource = res.value.pageData
      }else{
