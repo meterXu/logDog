@@ -1,6 +1,6 @@
 {
-  "name": "s2-logfv-site",
-  "version": "0.1.0",
+  "name": "logdog-site",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "pre": "yarn install",
