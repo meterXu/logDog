@@ -85,7 +85,7 @@ yarn add logdog-web
 全局安装
 
 ```javascript=
-import Logdog from '@dpark/logdog-web';
+import Logdog from 'logdog-web';
 let logdog = new Logdog({
   reportUrl: 'http://IP/logdog-server/logdog/web/upload',
   appId:"appId",
@@ -99,7 +99,7 @@ logdog.info('content')
 覆盖默认日志上报时间
 
 ```javascript=
-import Logdog from '@dpark/logdog-web';
+import Logdog from 'logdog-web';
 let logdog = new LogDog()
 logdog.initConfig({
   reportUrl: 'http://IP/logdog-server/logdog/web/upload',
@@ -115,7 +115,7 @@ logdog.initConfig({
 记录日志并加密
 
 ```javascript=
-import LogDog from '@dpark/logdog-web';
+import LogDog from 'logdog-web';
 //初始化
 let logdog = new LogDog({
     reportUrl: 'https://yourServerAddressToAcceptLogs',
@@ -129,7 +129,7 @@ logdog.infpWithEncryption('confidentialLogContent');
 记录日志并附带用户信息
 
 ```javascript=
-import LogDog from '@dpark/logdog-web';
+import LogDog from 'logdog-web';
 //初始化
 let logdog = new LogDog({
     reportUrl: 'https://yourServerAddressToAcceptLogs',
@@ -214,7 +214,7 @@ logdog.info('confidentialLogContent');
 记录普通日志
 
 ```javascript=
-import LogDog from '@dpark/logdog-web';
+import LogDog from 'logdog-web';
 let logdog = new LogDog({
     appId:"appId",
     appName:"appName"
@@ -225,7 +225,7 @@ logdog.info('登录系统成功')
 记录错误日志
 
 ```javascript=
-import LogDog from '@dpark/logdog-web';
+import LogDog from 'logdog-web';
 let logdog = new LogDog({
     appId:"appId",
     appName:"appName"
@@ -236,7 +236,7 @@ logdog.error(`数据id为空，无法更新，数据内容：${JSON.parse(data)}
 记录错误日志，并附带相关数据
 
 ```javascript=
-import LogDog from '@dpark/logdog-web';
+import LogDog from 'logdog-web';
 let logdog = new LogDog({
     appId:"appId",
     appName:"appName"

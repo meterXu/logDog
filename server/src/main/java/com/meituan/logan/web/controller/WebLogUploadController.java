@@ -22,7 +22,7 @@ import java.util.List;
  */
 @CrossOrigin(origins = "*", maxAge = 3600)
 @Controller
-@RequestMapping("/logfv/web")
+@RequestMapping("/logdog/web")
 public class WebLogUploadController {
 
     @Resource

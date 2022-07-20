@@ -25,7 +25,7 @@ import java.io.IOException;
  */
 @CrossOrigin(origins = "*", maxAge = 3600)
 @Controller
-@RequestMapping("/logfv")
+@RequestMapping("/logdog")
 public class LoganUploadController {
 
     @Resource

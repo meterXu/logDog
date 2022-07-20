@@ -1,14 +1,14 @@
-import LogFv,{replacer,axiosRequest,axiosError} from './src/index'
+import LogDog,{replacer,axiosRequest,axiosError} from './src/index'
 const install = function (Vue,config) {
-    let logfv = new LogFv()
-    logfv.frameError=function (){
+    let logdog = new LogDog()
+    logdog.frameError=function (){
         function _errDealWith(err, vm, info) {
             let content = {
                 message:err.message,
                 stack:err.stack,
                 info:info
             }
-            logfv.log(JSON.stringify(content,replacer),'exception')
+            logdog.log(JSON.stringify(content,replacer),'exception')
         }
         if(Vue.config.errorHandler){
             const _userErrorHandler=Vue.config.errorHandler
@@ -23,22 +23,22 @@ const install = function (Vue,config) {
             }
         }
     }
-    logfv.frameNetwork=function (){
+    logdog.frameNetwork=function (){
         if(Vue.prototype.axios){
             Vue.prototype.axios.interceptors.request.use(config=>{
-                axiosRequest(logfv,config)
+                axiosRequest(logdog,config)
                 return config;
             },err=>{
-                axiosError(logfv,err)
+                axiosError(logdog,err)
                 return Promise.reject(err);
             })
             Vue.prototype.axios.interceptors.response.use((response)=>response,(err)=>{
-                axiosError(logfv,err)
+                axiosError(logdog,err)
                 return Promise.reject(err)
             })
         }
     }
-    logfv.framePageview = function (){
+    logdog.framePageview = function (){
         Vue.mixin({
             beforeRouteEnter(to,from,next){
                 let content = {
@@ -59,16 +59,16 @@ const install = function (Vue,config) {
                         query:from.query
                     },
                 }
-                logfv.log(JSON.stringify(content,replacer),'page')
+                logdog.log(JSON.stringify(content,replacer),'page')
                 next()
             }
         })
     }
-    logfv.initConfig(config)
-    Vue.prototype.$logfv = logfv
+    logdog.initConfig(config)
+    Vue.prototype.$logdog = logdog
 }
 if (typeof window !== 'undefined' && window.Vue) {
     install(window.Vue)
 }
-export {LogFv,replacer,axiosRequest,axiosError}
+export {LogDog,replacer,axiosRequest,axiosError}
 export default install

@@ -31,7 +31,7 @@ import java.util.List;
  */
 @CrossOrigin(origins = "*", maxAge = 3600)
 @Controller
-@RequestMapping("/logfv")
+@RequestMapping("/logdog")
 public class LoganController {
 
     private static final String PARAM_ERROR = "param illegal";

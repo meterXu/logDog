@@ -45,7 +45,7 @@ import java.util.concurrent.TimeUnit;
  */
 @CrossOrigin(origins = "*", maxAge = 3600)
 @Controller
-@RequestMapping("/logfv/web")
+@RequestMapping("/logdog/web")
 public class WebLogController {
     private static final Logger LOGGER = Logger.getLogger(WebLogController.class);
 

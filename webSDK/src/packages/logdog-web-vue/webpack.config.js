@@ -6,7 +6,7 @@ module.exports = {
     output:{
     publicPath: './',
         filename: '[name].min.js',
-    library: 'logfv-web-vue',
+    library: 'logdog-web-vue',
     libraryTarget: 'umd'
 },
 module:{

@@ -1,3 +1,3 @@
-import LogFv,{replacer,axiosRequest,axiosError} from '../../logfv-web/index'
+import LogDog,{replacer,axiosRequest,axiosError} from '../../logdog-web/index'
 export {replacer,axiosRequest,axiosError}
-export default LogFv;
+export default LogDog;
